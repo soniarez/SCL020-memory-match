@@ -1,3 +1,8 @@
 import App from './components/App.js';
+//window.addEventListener('load', startGame);
 
-document.getElementById('root').appendChild(App());
+const cardsArray =App();
+//console.log(cardsArray);
+for (let index = 0; index < cardsArray.length; index++) {
+document.getElementById('cards').appendChild(cardsArray[index]);
+} 

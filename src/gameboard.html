@@ -7,9 +7,22 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body class="body-gameboard">
+  <div class="game-header">
+  <img class="pikachu-gif" src="img/pikachu.gif" alt="pikachu">
+  <h1 class="game-tittle">Pokemon Memory Match</h1>
+  <img class="pikachu-gif" src="img/pikachu.gif" alt="pikachu">
+</div>
+
+  <ul class="game-statistics">
+    <li>Score:</li>
+    <li>Time:</li>
+    <li>Restart</li>
+  </ul>
  
   <div id="root"></div> 
+  <div class="card-deck" id="cards"></div>
+  
   <script src="main.js" type="module"></script>
 </body>
 
