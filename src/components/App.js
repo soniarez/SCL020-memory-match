@@ -14,13 +14,33 @@
 //   .catch(console.error);
 //
 
+import pokemon from "../data/pokemon/pokemon.js";
+//console.log(pokemon);
+
 const App = () => {
-  const el = document.createElement('div');
+  const el = document.createElement("div");
+  el.className = "App";
+  el.textContent = "Hola mundo!";
 
-  el.className = 'App';
-  el.textContent = 'Hola mundo!';
+  return divEl();
+};
 
-  return el;
+const divEl = () => {
+  let cardsArray = [];
+  console.log(cardsArray);
+
+  for (let i = 0; i < 9; i++) {
+    const card = document.createElement("div");
+    const image = document.createElement("img");
+    card.className = "card";
+    image.className = "image";
+    image.setAttribute("src", pokemon.items[i].image);
+    card.appendChild(image);
+
+    cardsArray.push(card);
+  }
+
+  return cardsArray;
 };
 
 export default App;
