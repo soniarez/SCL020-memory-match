@@ -14,7 +14,6 @@ window.closePopup = function closePopup() {
 };
 
 //--------------------Termina Funciones PopUp ----------------------------
-=======
 import App from './components/App.js';
 //window.addEventListener('load', startGame);
 
