@@ -26,6 +26,7 @@ const App = () => {
 let shuffling = shuffle();
 return shuffling;
 
+  
 };
 
 //FUNCIÓN CREANDO ELEMENTOS DEL DOM
