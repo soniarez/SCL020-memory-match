@@ -8,29 +8,22 @@
   <link rel="stylesheet" href="rulespopupstyle.css" />
 </head>
 
-<!-- <body> -->
-<body onload="startPopup()"> 
- <!-- Desde Aqui va modal "Rules" -->
-  <!--<a href="#openModal">Open Modal</a> Aqui antes habia que dar click para que saliera popup-->
-   <div id="openModal" class="modalDialog">
-    <div class="pop-header">
-    <p>RULES</p>
-    <a onclick="closePopup()" href="#close" title="Close" class="close">x</a>
-      <h3> <img id="pokeball" src="https://www.pngall.com/wp-content/uploads/4/Pokeball-PNG-HD-Image.png" />  Take in turns flipping 2 cards at a time (by clicking on them)</h3>
-      <br>
-      <h3> <img id="pokeball" src="https://www.pngall.com/wp-content/uploads/4/Pokeball-PNG-HD-Image.png" /> If they’re a match, take another turn, if not, flip them back</h3>
-      <br>
-      <h3> <img id="pokeball" src="https://www.pngall.com/wp-content/uploads/4/Pokeball-PNG-HD-Image.png" />  Keep score by clicking next to the numbers on the score slider at the top</h3>
-    </div>
-  </div>
-<!-- Aqui cierra el modal "Rules" -->
+<body class="body-gameboard">
+  <div class="game-header">
+  <img class="pikachu-gif" src="img/pikachu.gif" alt="pikachu">
+  <h1 class="game-tittle">Pokemon Memory Match</h1>
+  <img class="pikachu-gif" src="img/pikachu.gif" alt="pikachu">
+</div>
 
-
-
-  <!-- <div id="root"></div>-->
-  <div class="container">
-    <div id="cards"></div>
-  </div>
+  <ul class="game-statistics">
+    <li>Score:</li>
+    <li>Time:</li>
+    <li>Restart</li>
+  </ul>
+ 
+  <div id="root"></div> 
+  <div class="card-deck" id="cards"></div>
+  
   <script src="main.js" type="module"></script>
 </body>
 
