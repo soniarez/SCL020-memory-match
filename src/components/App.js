@@ -13,15 +13,10 @@
 //   .then(console.log)
 //   .catch(console.error);
 //
-
-import pokemon from "../data/pokemon/pokemon.js";
-//console.log(pokemon)
+import pokemon from "..data/pokemon/pokemon.js";
 
 const App = () => {
-  //const el = document.createElement("div");
-  //el.className = 'App';
-  //el.textContent = 'Hola mundo!'
-
+  
   let shuffling = shuffle();
   return shuffling;
 };
@@ -46,6 +41,13 @@ const divEl = () => {
   for (let index = 0; index < 16; index++) {
     const card = document.createElement("div");
     const front = document.createElement("img");
+    const back = document.createElement("img"); //por ahora off, hasta encontrar manera de show and hide el face y back de la carta
+
+    //Asignar clase a los elementos creados
+    card.className = "card";
+    front.className = "front";
+    back.className = "back";
+
     const back = document.createElement("img");
 
     //Asignar clase a los elementos creados
@@ -53,15 +55,24 @@ const divEl = () => {
     front.classList = "front";
     back.classList = "back";
 
+
     //Asignado atributos a los elementos creados
+    back.setAttribute("src", "img/backcard.png");
     front.setAttribute("src", pokemon.items[index].image);
+
     back.setAttribute("src", "img/backcard.png");
     card.setAttribute("name", pokemon.items[index].id); //agregando atributo name a tarjetas
+
 
     //Incorporando los elementos (appending) al HTML.
     card.appendChild(front);
     card.appendChild(back);
     cardsArray.push(card);
+
+    card.addEventListener("click", () => {
+      card.classList.toggle("toggleCard");
+      selectedCards.push(card.getAttribute("name"));
+    });
 
     //FUNCIÓN HANDLING CLICK
     card.addEventListener("click", () => {
@@ -80,9 +91,10 @@ const divEl = () => {
   return cardsArray; //retornará el listado de cartas
 };
 
+/*//FUNCIÓN DUPLICANDO CARTAS
+const duplicateCards = () => {
+const duplicateCards = () => { 
 
-//FUNCIÓN DUPLICANDO CARTAS
-/*const duplicateCards = () => { 
   const singleCards = divEl();
   let duplicatedCards = [];
   for (let index = 0; index < singleCards.length; index++) {
@@ -92,5 +104,5 @@ const divEl = () => {
   }
   return duplicatedCards; //está será mi lista final con las 18 cartas.
 }; */
-
+  
 export default App;
