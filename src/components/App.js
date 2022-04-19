@@ -14,7 +14,7 @@
 //   .catch(console.error);
 //
 
-import pokemon from "/src/data/pokemon/pokemon.js";
+import pokemon from "/data/pokemon/pokemon.js";
 //console.log(pokemon)
 
 const App = () => {
@@ -22,43 +22,43 @@ const App = () => {
   //el.className = 'App';
   //el.textContent = 'Hola mundo!'
 
-
-let shuffling = shuffle();
-return shuffling;
-
-  
+  let shuffling = shuffle();
+  return shuffling;
 };
 
 //FUNCIÓN CREANDO ELEMENTOS DEL DOM
 const divEl = () => {
-  
   let cardsArray = [];
 
   for (let index = 0; index < 8; index++) {
     const card = document.createElement("div");
     const front = document.createElement("img");
-    //const back= document.createElement("img"); por ahora off, hasta encontrar manera de show and hide el face y back de la carta
-    
+    const back = document.createElement("img"); //por ahora off, hasta encontrar manera de show and hide el face y back de la carta
+
     //Asignar clase a los elementos creados
     card.className = "card";
     front.className = "front";
-    //back.className = "back"; 
+    back.className = "back";
 
     //Asignado atributos a los elementos creados
+    back.setAttribute("src", "img/backcard.png");
     front.setAttribute("src", pokemon.items[index].image);
-    //back.setAttribute("src", "img/backcard.png");
 
     //Incorporando los elementos (appending) al HTML. Es decir, nos los estamos llevando al HTML
     card.appendChild(front);
-    //card.appendChild(back); 
+    card.appendChild(back);
     cardsArray.push(card);
+
+    card.addEventListener("click", () => {
+      card.classList.toggle("toggleCard");
+      selectedCards.push(card.getAttribute("name"));
+    });
   }
   return cardsArray; //retornará el listado de cartas
 };
 
-
 //FUNCIÓN DUPLICANDO CARTAS
-const duplicateCards = () => { 
+const duplicateCards = () => {
   const singleCards = divEl();
   let duplicatedCards = [];
   for (let index = 0; index < singleCards.length; index++) {
@@ -69,22 +69,16 @@ const duplicateCards = () => {
   return duplicatedCards; //está será mi lista final con las 18 cartas.
 };
 
-
 //FUNCIÓN SHUFFLING CARTAS
 const shuffle = () => {
   const shuffledCards = duplicateCards();
-for (let i = shuffledCards.length - 1; i > 0; i--) {
+  for (let i = shuffledCards.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     const temp = shuffledCards[i];
     shuffledCards[i] = shuffledCards[j];
     shuffledCards[j] = temp;
   }
   return shuffledCards; //esta será mi lista de cartas desordenado.
-}; 
-
-
-
-
-
+};
 
 export default App;
