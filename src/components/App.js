@@ -95,4 +95,23 @@ const divEl = (shuffledCards) => {
 };
 
 
+let countDownDate = new Date("Apr 19, 2022 11:26:25").getTime();
+const countDown = () => {
+  let now = new Date().getTime();
+  let distance = countDownDate - now;
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("demo").innerHTML = `${minutes}m ${seconds}s`;
+  if (distance < 0) {
+    clearInterval(countDown);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+};
+
+setInterval(()=>{
+  countDown()
+},1000)
+
+
 export default App;
