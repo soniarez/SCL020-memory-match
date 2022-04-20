@@ -81,7 +81,7 @@ for (let i = shuffledCards.length - 1; i > 0; i--) {
   }
   return shuffledCards; //esta será mi lista de cartas desordenado.
 }; 
-
+// Timer
 let countDownDate = new Date("Apr 19, 2022 11:26:25").getTime();
 const countDown = () => {
   let now = new Date().getTime();
