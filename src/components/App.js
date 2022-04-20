@@ -23,27 +23,37 @@ const App = () => {
   //el.textContent = 'Hola mundo!'
 
   let shuffling = shuffle();
-  return shuffling;
+  //console.log(shuffling);
+  let cardDeck = divEl(shuffling);
+
+  return cardDeck;
 };
+
 
 //FUNCIÓN SHUFFLING CARTAS
 const shuffle = () => {
-  const shuffledCards = duplicateCards();
-  for (let i = shuffledCards.length - 1; i > 0; i--) {
+  let originalCards = pokemon.items;
+  let copyCards = originalCards.concat(originalCards);
+  let shuffledCards = [];
+
+  for (let i = copyCards.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    const temp = shuffledCards[i];
-    shuffledCards[i] = shuffledCards[j];
-    shuffledCards[j] = temp;
-  }
-  return shuffledCards; //esta será mi lista de cartas desordenado.
+    const temp = copyCards[i];
+    copyCards[i] = copyCards[j];
+    copyCards[j] = temp;
+    //console.log(copyCards)
+    shuffledCards = copyCards;
+  } //console.log(shuffledCards)
+  return shuffledCards; //retornará array de cartas aleatoriamente
 };
 
+
 //FUNCIÓN CREANDO ELEMENTOS DEL DOM
-const divEl = () => {
+const divEl = (shuffledCards) => {
   let cardsArray = [];
   let selectedCards = [];
   
-  for (let index = 0; index < 9; index++) {
+  for (let index = 0; index <shuffledCards.length; index++) {
     const card = document.createElement("div");
     const front = document.createElement("img");
     const back = document.createElement("img");
@@ -54,25 +64,22 @@ const divEl = () => {
     back.classList = "back";
 
     //Asignado atributos a los elementos creados
-    front.setAttribute("src", pokemon.items[index].image);
+    front.setAttribute("src", shuffledCards[index].image);
     back.setAttribute("src", "img/backcard.png");
-    card.setAttribute("name", pokemon.items[index].id); //agregando atributo name a tarjetas
+    card.setAttribute("name", shuffledCards[index].id); //agregando atributo name a tarjetas
 
     //Incorporando los elementos (appending) al HTML.
     card.appendChild(front);
     card.appendChild(back);
 
     cardsArray.push(card);
+    //console.log(cardsArray);
 
-    //Duplicando las tarjetas
-    /*let copy = cardsArray[index].cloneNode(true);
-    cardsArray.push(copy); */
-
-    //FUNCIÓN HANDLING CLICK
+    //HANDLING CLICK
     card.addEventListener("click", () => {
       card.classList.toggle("is-flipped");
       selectedCards.push(card.getAttribute("name"));
-
+    
       if (selectedCards.length === 2) {
         //document.body.style.pointerEvents = "none";
         if (selectedCards[0] === selectedCards[1]) {
@@ -83,23 +90,9 @@ const divEl = () => {
       }
     }); 
   }
+
   return cardsArray; //retornará el listado de cartas
 };
-
-//FUNCIÓN DUPLICANDO CARTAS
-const duplicateCards = () => { 
-  const singleCards = divEl();
-  let duplicatedCards = [];
-  for (let index = 0; index < singleCards.length; index++) {
-    duplicatedCards.push(singleCards[index]);
-    let copy = singleCards[index].cloneNode(true);
-    
-    duplicatedCards.push(copy);
-    //console.log(copy);
-  }
-  return duplicatedCards; //está será mi lista final con las 18 cartas.
-}; 
-
 
 
 export default App;
