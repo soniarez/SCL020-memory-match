@@ -48,7 +48,7 @@ export default {
     },
 
     //Copy Data
-    {
+    /*{
       id: "bulbasaur",
       image: "https://www.serebii.net/pokemongo/pokemon/001.png",
       bgColor: "#339933",
@@ -92,7 +92,7 @@ export default {
       id: "blastoise",
       image: "https://www.serebii.net/pokemongo/pokemon/009.png",
       bgColor: "#1572B6",
-    }, 
+    }, */
 
   ],
 };

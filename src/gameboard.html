@@ -12,7 +12,7 @@
 <body class="body-gameboard" onload="startPopup()">
   <!-- Desde Aqui va modal "Rules" -->
   <!--<a href="#openModal">Open Modal</a> Aqui antes habia que dar click para que saliera popup-->
-  <div id="openModal" class="modalDialog">
+  <!--<div id="openModal" class="modalDialog">
     <div class="pop-header">
     <p>RULES</p>
     <a onclick="closePopup()" href="#close" title="Close" class="close">x</a>
@@ -22,22 +22,23 @@
       <br>
       <h3> <img id="pokeball" src="https://www.pngall.com/wp-content/uploads/4/Pokeball-PNG-HD-Image.png" />  Keep score by clicking next to the numbers on the score slider at the top</h3>
     </div>
-  </div>
+  </div> !-->
 <!-- Aqui cierra el modal "Rules" -->
   <div class="game-header">
   <img class="pikachu-gif" src="img/pikachu.gif" alt="pikachu">
-  <h1 class="game-tittle">Pokemon Memory Match</h1>
+  <h1 class="game-tittle" onclick="location.href='index.html'">Pokemon Memory Match</h1>
   <img class="pikachu-gif" src="img/pikachu.gif" alt="pikachu">
 </div>
 
   <ul class="game-statistics">
     <li>Score:</li>
-    <li>Time:</li>
+    <li>Time:   <p id="demo"></p></li>
     <li>Restart</li>
   </ul>
  
 
   <div class="card-deck" id="cards"></div>
+
   
   <script src="main.js" type="module"></script>
 </body>
