@@ -1,4 +1,3 @@
-
 //--------------------Inicio Funciones PopUp ----------------------------
 //Declaramos en variable la clase del Modal
 let popUp = document.querySelector(".modalDialog");
@@ -14,12 +13,14 @@ window.closePopup = function closePopup() {
 };
 
 //--------------------Termina Funciones PopUp ----------------------------
-import App from './components/App.js';
+import App from "./components/App.js";
 //window.addEventListener('load', startGame);
 
-const cardsArray =App();
+
+const cardsArray = App();
+//console.log(selectedCards);
+
 //console.log(cardsArray);
 for (let index = 0; index < cardsArray.length; index++) {
-document.getElementById('cards').appendChild(cardsArray[index]);
-} 
-
+  document.getElementById("cards").appendChild(cardsArray[index]);
+}
