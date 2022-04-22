@@ -29,7 +29,6 @@ const App = () => {
   return cardDeck;
 };
 
-
 //FUNCIÓN SHUFFLING CARTAS
 const shuffle = () => {
   let originalCards = pokemon.items;
@@ -47,13 +46,14 @@ const shuffle = () => {
   return shuffledCards; //retornará array de cartas aleatoriamente
 };
 
-
 //FUNCIÓN CREANDO ELEMENTOS DEL DOM
 const divEl = (shuffledCards) => {
   let cardsArray = [];
   let selectedCards = [];
-  
-  for (let index = 0; index <shuffledCards.length; index++) {
+  let selectedCardsNames = [];
+  let count = 0;
+
+  for (let index = 0; index < shuffledCards.length; index++) {
     const card = document.createElement("div");
     const front = document.createElement("img");
     const back = document.createElement("img");
@@ -66,52 +66,76 @@ const divEl = (shuffledCards) => {
     //Asignado atributos a los elementos creados
     front.setAttribute("src", shuffledCards[index].image);
     back.setAttribute("src", "img/backcard.png");
-    card.setAttribute("name", shuffledCards[index].id); //agregando atributo name a tarjetas
+    //card.setAttribute("name", shuffledCards[index].id); //agregando atributo name a tarjetas
+    card.dataset.name = shuffledCards[index].id;
 
-    //Incorporando los elementos (appending) al HTML.
+    //Incorporando los elementos (appending) al HTML
     card.appendChild(front);
     card.appendChild(back);
 
     cardsArray.push(card);
-    //console.log(cardsArray);
 
-    //HANDLING CLICK
-    card.addEventListener("click", () => {
-      card.classList.toggle("is-flipped");
-      selectedCards.push(card.getAttribute("name"));
-    
-      if (selectedCards.length === 2) {
-        //document.body.style.pointerEvents = "none";
-        if (selectedCards[0] === selectedCards[1]) {
-          //console.log("its a match");
-        } else {
-          //console.log("no match");
-        }
-      }
-    }); 
+    //Llamando a la función handleClick
+    handleClick(card, selectedCards, selectedCardsNames, count);
   }
 
   return cardsArray; //retornará el listado de cartas
 };
 
+//FUNCIÓN HANDLING CLICK
+const handleClick = (card, selectedCards, selectedCardsNames, count) => {
+  card.addEventListener("click", () => {
+    card.classList.toggle("is-flipped");
+    //selectedCardsNames.push(card.getAttribute("name"));
+    selectedCards.push(card);
+    selectedCardsNames.push(card.dataset.name);
 
-let countDownDate = new Date("Apr 19, 2022 11:26:25").getTime();
-const countDown = () => {
-  let now = new Date().getTime();
-  let distance = countDownDate - now;
-  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  document.getElementById("demo").innerHTML = `${minutes}m ${seconds}s`;
-  if (distance < 0) {
-    clearInterval(countDown);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-  }
+    //Comparando entre dos tarjetas (dos selecciones del usuario)
+    if (selectedCardsNames.length === 2) { 
+      
+      if (selectedCardsNames[0] === selectedCardsNames[1]) {
+        let matchSound = new Audio("sound/match.mp3");
+        matchSound.play();
+        count++;
+      } else {
+       selectedCards[0].classList.add("no-matched");
+       selectedCards[1].classList.add("no-matched");
+       if (selectedCards[0].classList.contains("no-matched") && selectedCards[1].classList.contains("no-matched"));
+       selectedCards[0].classList.toggle("is-flipped");
+       selectedCards[1].classList.toggle("is-flipped");
+      }
+    }
+  });
 };
 
-setInterval(()=>{
-  countDown()
-},1000)
+
+//FUNCIÓN TIMER
+/*let startTime = 0.2;
+let time = startTime * 60;
+
+let countDownEl = document.getElementById("demo");
+
+const countDown = () => {
+  let minutes = Math.floor(time/60);
+  let seconds = time % 60;
+
+  if (seconds < 10) {
+   "0" + seconds;
+  } else {
+    seconds;
+  }
+
+  countDownEl.innerHTML = `${minutes}m ${seconds}s`;
+  time--;
+
+  if (time <= 0) {
+    countDownEl.innerHTML = "EXPIRED";
+  }
+}
+setInterval(() => {
+  countDown();
+}, 1000); */
 
 
 export default App;

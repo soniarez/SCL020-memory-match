@@ -235,19 +235,29 @@ position: absolute;
 height: 100%; 
 width: 100%;
 backface-visibility: hidden;
--webkit-backface-visibility: visible; /* Este después se debe poner hidden para ocultarlas*/
+-webkit-backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
 transform: rotateY(180deg);
 }
 
-/*.back {
-transform: rotateY( 90deg ); 
+.back {
+/*transform: rotateY( 90deg ); */
 backface-visibility: visible; 
-} */
+} 
 
 .card.is-flipped {
   transform: rotateY(180deg);
+  pointer-events: none; /*previene el evento de cliqueo*/
 }
 
+.card.is-matched {
+  border-color: 2px #f93a13;
+}
+
+.card-no-matched {
+  border-color: 2px chartreuse;
+}
+
+/*MEDIA QUERIES PARA GAMEBOARD*/
 @media (max-width: 600px) {
   .card-deck {
     grid-template-columns: repeat(3, auto);
