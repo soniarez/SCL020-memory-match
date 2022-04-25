@@ -49,9 +49,7 @@ const shuffle = () => {
 //FUNCIÓN CREANDO ELEMENTOS DEL DOM
 const divEl = (shuffledCards) => {
   let cardsArray = [];
-  let selectedCards = [];
-  let selectedCardsNames = [];
-  let count = 0;
+  // let count = 0;
 
   for (let index = 0; index < shuffledCards.length; index++) {
     const card = document.createElement("div");
@@ -76,39 +74,49 @@ const divEl = (shuffledCards) => {
     cardsArray.push(card);
 
     //Llamando a la función handleClick
-    handleClick(card, selectedCards, selectedCardsNames, count);
+    handleClick(card);
   }
 
   return cardsArray; //retornará el listado de cartas
 };
 
+//Sacamos las variables, porque al mandarlas como parametro siempre se recibia el mismo array de las primeras cartas seleccionadas
+let selectedCards = [];
+let selectedCardsNames = [];
+
 //FUNCIÓN HANDLING CLICK
-const handleClick = (card, selectedCards, selectedCardsNames, count) => {
+const handleClick = (card) => {
   card.addEventListener("click", () => {
     card.classList.toggle("is-flipped");
-    //selectedCardsNames.push(card.getAttribute("name"));
-    selectedCards.push(card);
-    selectedCardsNames.push(card.dataset.name);
 
+    // Se hace un if donde pregunto si el lenght es < 2 para dejarle push al array de la primera carta
+    if (selectedCardsNames.length < 2) {
+      selectedCards.push(card);
+      selectedCardsNames.push(card.dataset.name);
 
-    //Comparando entre dos tarjetas (dos selecciones del usuario)
-    if (selectedCardsNames.length === 2) { 
-      
-      if (selectedCardsNames[0] === selectedCardsNames[1]) {
-        let matchSound = new Audio("sound/match.mp3");
-        matchSound.play();
-        count++;
-      } else {
-       selectedCards[0].classList.add("no-matched");
-       selectedCards[1].classList.add("no-matched");
-       if (selectedCards[0].classList.contains("no-matched") && selectedCards[1].classList.contains("no-matched"));
-       selectedCards[0].classList.toggle("is-flipped");
-       selectedCards[1].classList.toggle("is-flipped");
+      // despues del push se pregunta si lo que hay en el array es = 2 si no es igual a 2 quedamos a la espera de la 2da carta
+      if (selectedCardsNames.length === 2) {
+        //Ya tenemos 2 cartas ahora hay que ver si son iguales o no
+        //Si son iguales Suena el pikachu y se reinicia los array
+        if (selectedCardsNames[0] === selectedCardsNames[1]) {
+          let matchSound = new Audio("sound/match.mp3");
+          matchSound.play();
+          selectedCards = [];
+          selectedCardsNames = [];
+          //count++;
+        } else {
+          //Si son diferentes se dan vuelta y se vacian los array , se le coloca un timeout para que de tiempo de voltear
+          setTimeout(() => {
+            selectedCards[0].classList.toggle("is-flipped");
+            selectedCards[1].classList.toggle("is-flipped");
+            selectedCards = [];
+            selectedCardsNames = [];
+          }, 1500);
+        }
       }
     }
   });
 };
-
 
 //FUNCIÓN TIMER
 /*let startTime = 0.2;
@@ -136,6 +144,5 @@ const countDown = () => {
 setInterval(() => {
   countDown();
 }, 1000); */
-
 
 export default App;
