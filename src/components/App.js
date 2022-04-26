@@ -72,6 +72,7 @@ const gameBoard = (shuffledCards) => {
     cardsArray.push(card);
 
     //Llamando a la función playGame
+
     playGame(card);
   }
 
@@ -81,6 +82,7 @@ const gameBoard = (shuffledCards) => {
 //Sacamos las variables, porque al mandarlas como parametro siempre se recibia el mismo array de las primeras cartas seleccionadas
 let selectedCards = [];
 let selectedCardsNames = [];
+
 let score = 0;
 
 //FUNCIÓN HANDLING CLICK
@@ -116,10 +118,15 @@ const playGame = (card) => {
         if (score === 2) {
           showModal();
         }
+        drawScore(score);
+        if (score === 2) {
+          congratsPopup();
+        }
       }
     }
   });
 };
+
 
 //FUNCIÓN SCORE
 const drawScore = (score) => {
@@ -127,22 +134,17 @@ const drawScore = (score) => {
   labelScore.textContent = "Score: " + score;
 };
 
-//FUNCIÓN MODAL CONGRATS
-const modal = document.querySelector(".modalDialog");
-const close = document.querySelector(".close");
 
-const showModal = () => {
-  modal.classList.add("show-modalDialog");
-} 
+//Funcion open modal
+const congratsPopup = () => {
+  let winAlert = document.getElementById("openModal2");
+  winAlert.classList.add("show-modalDialog");
 
-const closeModal = () => {
-  close.addEventListener("click", () => {
-    console.log("click");
-    modal.classList.remove("show-modalDialog");
-  })
-}
-
-//close.addEventListener("click", "show-modalDialog");
+  let closeCongrats = document.getElementById("close");
+  closeCongrats.addEventListener("click", () => {
+    winAlert.classList.remove("show-modalDialog");
+  });
+};
 
 
 //FUNCIÓN TIMER
