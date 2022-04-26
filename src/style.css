@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
 
 html {
@@ -203,7 +204,26 @@ ul {
   display: flex;
   list-style: none;
   justify-content: space-evenly;
+
 }
+
+ul li {
+  background-color: #6F3F71;
+  width: 120px;
+  height: 30px;
+  border-radius: 10px;
+  color: #fff;
+  padding: 5px;
+  font-family: Sora;
+  font-size: 1rem;
+  text-align: center;
+  align-content: center;
+}
+
+ul li:last-child {
+  cursor: pointer;
+}
+
 
 /*Este es el div parent del set de tarjetas*/
 .card-deck {
@@ -217,45 +237,46 @@ ul {
   grid-template-columns: repeat(6, auto);
   /*grid-template-rows: repeat(4, auto);*/
   grid-gap: 1.5rem;
+  perspective: 800px; /*va en conjunto con preserve-3d de .card*/
 } 
 
-/*Estos son los div children, es decir, cada div de tarjeta*/
+/*Este es el div de cada tarjeta*/
 .card {
   width: 100%;
   height: 100%;
   position: relative;
-  transition: transform 1s;
-  transform-style: preserve-3d;
+  /*transition: transform 1s; */
+  transform-style: preserve-3d; /*para dar el efecto de stack (pegar) el front y back de la tarjeta*/
+  transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Es la curva definida por 4 puntos. Estos valores representan el inicio y fin en tiempo de la curva, es decir, del giro o vuelta*/
+  border-radius: 12px;
 }
 
-/*Estas son las tarjestas (imágenes) de front y back*/
+/*Estas son las tarjetas (imágenes) de front y back*/
 .front {
 background-color: aliceblue; 
 position: absolute; 
 height: 100%; 
 width: 100%;
 backface-visibility: hidden;
--webkit-backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
+-webkit-backface-visibility: visible; /* Este después se debe poner hidden para ocultarlas*/
 transform: rotateY(180deg);
 }
 
 .back {
-/*transform: rotateY( 90deg ); */
+cursor: pointer;
 backface-visibility: visible; 
 } 
+
+.front, .back {
+  border-radius: 12px;
+  box-shadow: rgba(0,0,0,0.5) 0px 5px 20px  /*rgba: los primeros 3 valores dan el color (negro), el 4to valor es opacity. 0px y 5px corresponden a la orientación de la shadow en ejes x y y. 15px es el blur*/ 
+}
 
 .card.is-flipped {
   transform: rotateY(180deg);
   pointer-events: none; /*previene el evento de cliqueo*/
 }
 
-.card.is-matched {
-  border-color: 2px #f93a13;
-}
-
-.card-no-matched {
-  border-color: 2px chartreuse;
-}
 
 /*MEDIA QUERIES PARA GAMEBOARD*/
 @media (max-width: 600px) {
@@ -272,4 +293,128 @@ backface-visibility: visible;
     flex-direction: column;
     align-items: center;
   }
+}
+
+
+/*-----------------------------------INICIO MODALS--------------------------------------------------*/
+.pop-header
+    {
+        display: flex;
+        flex-direction: column;
+        margin: 0px;
+        width: 100%;
+        background-color: #ffffff!important;
+        height: auto;
+        z-index: 99999;
+    }
+ 
+.pop-header p
+{
+  color:white;
+  font-size: 40px;
+  line-height: 65px;
+  font-family: "Press Start 2P";
+  background-color:red;
+  float:left;
+  margin: 0px;
+  
+  width:100%;
+  height: 60px;
+  top: 20px;
+  position:relative;
+  display:inline-block;
+  padding:1px;
+  z-index: 99999;
+}
+
+.modalDialog {
+    position: fixed;
+    font-family: "Open Sans";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0; 
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+    }
+
+    .modalDialog:target {
+        opacity:1;
+        pointer-events: auto;
+        z-index: 99999;
+        
+    }
+
+    .modalDialog > div {
+
+        width: 600px;  height:400px;  padding: 70px;
+        position: relative;
+        margin: 2% auto;
+        padding: 5px 20px 13px 20px;
+        border-radius: 5px;
+        background: #fff;
+        /*opacity: 80%;  prueba cuando tengamos fondo*/
+        z-index: 99999;
+    }
+
+.close {
+  width: 30px;  height: 30px;  display: inline-block;
+  position: absolute;  top: 40px;  font-size:20px;  right: 30px;
+  -webkit-transition: all ease 0.5s;  transition: all ease 0.5s;
+  border-radius: 50%;  background: #ffffff;  font-weight: bold;
+  color: #ff0000;  text-align:center; text-decoration: none; cursor:pointer;
+  z-index: 99999;
+    }
+
+    .close:hover {  -webkit-transform: rotate(180deg);
+  transform: rotate(400deg);
+  z-index: 99999;
+    }
+
+    .show-modalDialog {    opacity: 1;    visibility: visible;    transform: scale(1.0);
+        transition: visibility 0s linear 0s, opacity 1.25s 0s, transform 1.25s;
+        z-index: 99999;
+    }
+
+    .hide-modalDialog {    opacity: 0;    visibility: hidden ; 
+      z-index: 99999;
+    }
+
+h3{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 50px;
+}
+
+h2{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 50px;
+
+}
+
+.pokeballmodal{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  position: relative;
+}
+
+#pokeball{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  top: -10px;
+  width:40px;
+  height:40px;
+  
 }

@@ -24,7 +24,7 @@ const App = () => {
 
   let shuffling = shuffle();
   //console.log(shuffling);
-  let cardDeck = divEl(shuffling);
+  let cardDeck = gameBoard(shuffling);
 
   return cardDeck;
 };
@@ -40,16 +40,15 @@ const shuffle = () => {
     const temp = copyCards[i];
     copyCards[i] = copyCards[j];
     copyCards[j] = temp;
-    //console.log(copyCards)
+
     shuffledCards = copyCards;
-  } //console.log(shuffledCards)
+  }
   return shuffledCards; //retornará array de cartas aleatoriamente
 };
 
 //FUNCIÓN CREANDO ELEMENTOS DEL DOM
-const divEl = (shuffledCards) => {
+const gameBoard = (shuffledCards) => {
   let cardsArray = [];
-  // let count = 0;
 
   for (let index = 0; index < shuffledCards.length; index++) {
     const card = document.createElement("div");
@@ -64,7 +63,6 @@ const divEl = (shuffledCards) => {
     //Asignado atributos a los elementos creados
     front.setAttribute("src", shuffledCards[index].image);
     back.setAttribute("src", "img/backcard.png");
-    //card.setAttribute("name", shuffledCards[index].id); //agregando atributo name a tarjetas
     card.dataset.name = shuffledCards[index].id;
 
     //Incorporando los elementos (appending) al HTML
@@ -73,8 +71,8 @@ const divEl = (shuffledCards) => {
 
     cardsArray.push(card);
 
-    //Llamando a la función handleClick
-    handleClick(card);
+    //Llamando a la función playGame
+    playGame(card);
   }
 
   return cardsArray; //retornará el listado de cartas
@@ -83,9 +81,10 @@ const divEl = (shuffledCards) => {
 //Sacamos las variables, porque al mandarlas como parametro siempre se recibia el mismo array de las primeras cartas seleccionadas
 let selectedCards = [];
 let selectedCardsNames = [];
+let score = 0;
 
 //FUNCIÓN HANDLING CLICK
-const handleClick = (card) => {
+const playGame = (card) => {
   card.addEventListener("click", () => {
     card.classList.toggle("is-flipped");
 
@@ -99,11 +98,11 @@ const handleClick = (card) => {
         //Ya tenemos 2 cartas ahora hay que ver si son iguales o no
         //Si son iguales Suena el pikachu y se reinicia los array
         if (selectedCardsNames[0] === selectedCardsNames[1]) {
-          let matchSound = new Audio("sound/match.mp3");
-          matchSound.play();
+          //let matchSound = new Audio("sound/match.mp3");
+          //matchSound.play();
           selectedCards = [];
           selectedCardsNames = [];
-          //count++;
+          score++;
         } else {
           //Si son diferentes se dan vuelta y se vacian los array , se le coloca un timeout para que de tiempo de voltear
           setTimeout(() => {
@@ -111,38 +110,75 @@ const handleClick = (card) => {
             selectedCards[1].classList.toggle("is-flipped");
             selectedCards = [];
             selectedCardsNames = [];
-          }, 1500);
+          }, 1200);
+        }
+        drawScore(score);
+        if (score === 2) {
+          showModal();
         }
       }
     }
   });
 };
 
+//FUNCIÓN SCORE
+const drawScore = (score) => {
+  let labelScore = document.getElementById("score");
+  labelScore.textContent = "Score: " + score;
+};
+
+//FUNCIÓN MODAL CONGRATS
+const modal = document.querySelector(".modalDialog");
+const close = document.querySelector(".close");
+
+const showModal = () => {
+  modal.classList.add("show-modalDialog");
+} 
+
+const closeModal = () => {
+  close.addEventListener("click", () => {
+    console.log("click");
+    modal.classList.remove("show-modalDialog");
+  })
+}
+
+//close.addEventListener("click", "show-modalDialog");
+
+
 //FUNCIÓN TIMER
-/*let startTime = 0.2;
+let startTime = 0;
 let time = startTime * 60;
 
-let countDownEl = document.getElementById("demo");
-
 const countDown = () => {
-  let minutes = Math.floor(time/60);
-  let seconds = time % 60;
+  let countDownEl = document.getElementById("timer");
 
+  let minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+ 
   if (seconds < 10) {
-   "0" + seconds;
+    "0" + seconds;
   } else {
     seconds;
   }
 
-  countDownEl.innerHTML = `${minutes}m ${seconds}s`;
-  time--;
+  countDownEl.innerHTML = "Timer: " + `${minutes}m ${seconds}s`;
+  time++;
 
   if (time <= 0) {
     countDownEl.innerHTML = "EXPIRED";
   }
-}
-setInterval(() => {
-  countDown();
-}, 1000); */
+};
+//setInterval(countDown, 1000);
+
+
+
+
+
+
+
+
+
+
+
 
 export default App;
