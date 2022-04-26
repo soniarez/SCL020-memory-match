@@ -24,7 +24,7 @@ const App = () => {
 
   let shuffling = shuffle();
   //console.log(shuffling);
-  let cardDeck = divEl(shuffling);
+  let cardDeck = gameBoard(shuffling);
 
   return cardDeck;
 };
@@ -47,7 +47,7 @@ const shuffle = () => {
 };
 
 //FUNCIÓN CREANDO ELEMENTOS DEL DOM
-const divEl = (shuffledCards) => {
+const gameBoard = (shuffledCards) => {
   let cardsArray = [];
   // let count = 0;
 
@@ -74,7 +74,7 @@ const divEl = (shuffledCards) => {
     cardsArray.push(card);
 
     //Llamando a la función handleClick
-    handleClick(card);
+    playGame(card);
   }
 
   return cardsArray; //retornará el listado de cartas
@@ -83,9 +83,11 @@ const divEl = (shuffledCards) => {
 //Sacamos las variables, porque al mandarlas como parametro siempre se recibia el mismo array de las primeras cartas seleccionadas
 let selectedCards = [];
 let selectedCardsNames = [];
+let score = [];
+let closeAlert = "";
 
 //FUNCIÓN HANDLING CLICK
-const handleClick = (card) => {
+const playGame = (card) => {
   card.addEventListener("click", () => {
     card.classList.toggle("is-flipped");
 
@@ -103,7 +105,7 @@ const handleClick = (card) => {
           matchSound.play();
           selectedCards = [];
           selectedCardsNames = [];
-          //count++;
+          score++;
         } else {
           //Si son diferentes se dan vuelta y se vacian los array , se le coloca un timeout para que de tiempo de voltear
           setTimeout(() => {
@@ -113,8 +115,29 @@ const handleClick = (card) => {
             selectedCardsNames = [];
           }, 1500);
         }
+        drawScore(score);
+        if (score === 2) {
+          congratsPopup();
+        }
       }
     }
+  });
+};
+
+//Funcion score
+const drawScore = (score) => {
+  let labelScore = document.getElementById("score");
+  labelScore.textContent = "Score: " + score;
+};
+
+//Funcion open modal
+const congratsPopup = () => {
+  let winAlert = document.getElementById("openModal2");
+  winAlert.classList.add("show-modalDialog");
+
+  let closeCongrats = document.getElementById("close");
+  closeCongrats.addEventListener("click", () => {
+    winAlert.classList.remove("show-modalDialog");
   });
 };
 

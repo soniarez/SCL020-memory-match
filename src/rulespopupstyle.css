@@ -10,7 +10,7 @@
         width: 100%;
         background-color: #ffffff!important;
         height: auto;
-          
+        
     }
  
 .pop-header p
@@ -29,6 +29,7 @@
   position:relative;
   display:inline-block;
   padding:1px;
+  
 }
 
 .modalDialog {
@@ -39,18 +40,19 @@
     bottom: 0;
     left: 0;
     background: rgba(0,0,0,0.8);
-    z-index: 99999;
+    /* z-index: 99999; */
     opacity:0; 
     -webkit-transition: opacity 400ms ease-in;
     -moz-transition: opacity 400ms ease-in;
     transition: opacity 400ms ease-in;
-    pointer-events: none;
+    visibility: hidden;
     }
 
 
     .modalDialog:target {
         opacity:1;
         pointer-events: auto;
+        
     }
 
     .modalDialog > div {
@@ -62,6 +64,8 @@
         border-radius: 5px;
         background: #fff;
         /*opacity: 80%;  prueba cuando tengamos fondo*/
+       
+        
     }
 
 .close {
@@ -70,17 +74,21 @@
   -webkit-transition: all ease 0.5s;  transition: all ease 0.5s;
   border-radius: 50%;  background: #ffffff;  font-weight: bold;
   color: #ff0000;  text-align:center; text-decoration: none; cursor:pointer;
+  /* z-index: 99999; */
     }
 
     .close:hover {  -webkit-transform: rotate(180deg);
   transform: rotate(400deg);
+  /* z-index: 99999; */
     }
 
     .show-modalDialog {    opacity: 1;    visibility: visible;    transform: scale(1.0);
         transition: visibility 0s linear 0s, opacity 1.25s 0s, transform 1.25s;
+        z-index: 999999;
+       
     }
     .hide-modalDialog {    opacity: 0;    visibility: hidden ; 
-
+      
     }
 
 h3{
@@ -88,6 +96,23 @@ h3{
     flex-direction: row;
     position: relative;
     top: 50px;
+}
+
+h2{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 50px;
+
+}
+
+.pokeballmodal{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  position: relative;
 }
 
 #pokeball{
@@ -99,4 +124,5 @@ h3{
   height:40px;
   
 }
+
 
