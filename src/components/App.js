@@ -116,10 +116,6 @@ const playGame = (card) => {
         }
         drawScore(score);
         if (score === 2) {
-          showModal();
-        }
-        drawScore(score);
-        if (score === 2) {
           congratsPopup();
         }
       }
