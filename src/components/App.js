@@ -40,16 +40,15 @@ const shuffle = () => {
     const temp = copyCards[i];
     copyCards[i] = copyCards[j];
     copyCards[j] = temp;
-    //console.log(copyCards)
+
     shuffledCards = copyCards;
-  } //console.log(shuffledCards)
+  }
   return shuffledCards; //retornará array de cartas aleatoriamente
 };
 
 //FUNCIÓN CREANDO ELEMENTOS DEL DOM
 const gameBoard = (shuffledCards) => {
   let cardsArray = [];
-  // let count = 0;
 
   for (let index = 0; index < shuffledCards.length; index++) {
     const card = document.createElement("div");
@@ -64,7 +63,6 @@ const gameBoard = (shuffledCards) => {
     //Asignado atributos a los elementos creados
     front.setAttribute("src", shuffledCards[index].image);
     back.setAttribute("src", "img/backcard.png");
-    //card.setAttribute("name", shuffledCards[index].id); //agregando atributo name a tarjetas
     card.dataset.name = shuffledCards[index].id;
 
     //Incorporando los elementos (appending) al HTML
@@ -73,7 +71,8 @@ const gameBoard = (shuffledCards) => {
 
     cardsArray.push(card);
 
-    //Llamando a la función handleClick
+    //Llamando a la función playGame
+
     playGame(card);
   }
 
@@ -83,8 +82,8 @@ const gameBoard = (shuffledCards) => {
 //Sacamos las variables, porque al mandarlas como parametro siempre se recibia el mismo array de las primeras cartas seleccionadas
 let selectedCards = [];
 let selectedCardsNames = [];
-let score = [];
-let closeAlert = "";
+
+let score = 0;
 
 //FUNCIÓN HANDLING CLICK
 const playGame = (card) => {
@@ -101,8 +100,8 @@ const playGame = (card) => {
         //Ya tenemos 2 cartas ahora hay que ver si son iguales o no
         //Si son iguales Suena el pikachu y se reinicia los array
         if (selectedCardsNames[0] === selectedCardsNames[1]) {
-          let matchSound = new Audio("sound/match.mp3");
-          matchSound.play();
+          //let matchSound = new Audio("sound/match.mp3");
+          //matchSound.play();
           selectedCards = [];
           selectedCardsNames = [];
           score++;
@@ -113,7 +112,11 @@ const playGame = (card) => {
             selectedCards[1].classList.toggle("is-flipped");
             selectedCards = [];
             selectedCardsNames = [];
-          }, 1500);
+          }, 1200);
+        }
+        drawScore(score);
+        if (score === 2) {
+          showModal();
         }
         drawScore(score);
         if (score === 2) {
@@ -124,11 +127,13 @@ const playGame = (card) => {
   });
 };
 
-//Funcion score
+
+//FUNCIÓN SCORE
 const drawScore = (score) => {
   let labelScore = document.getElementById("score");
   labelScore.textContent = "Score: " + score;
 };
+
 
 //Funcion open modal
 const congratsPopup = () => {
@@ -141,31 +146,41 @@ const congratsPopup = () => {
   });
 };
 
+
 //FUNCIÓN TIMER
-/*let startTime = 0.2;
+let startTime = 0;
 let time = startTime * 60;
 
-let countDownEl = document.getElementById("demo");
-
 const countDown = () => {
-  let minutes = Math.floor(time/60);
-  let seconds = time % 60;
+  let countDownEl = document.getElementById("timer");
 
+  let minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+ 
   if (seconds < 10) {
-   "0" + seconds;
+    "0" + seconds;
   } else {
     seconds;
   }
 
-  countDownEl.innerHTML = `${minutes}m ${seconds}s`;
-  time--;
+  countDownEl.innerHTML = "Timer: " + `${minutes}m ${seconds}s`;
+  time++;
 
   if (time <= 0) {
     countDownEl.innerHTML = "EXPIRED";
   }
-}
-setInterval(() => {
-  countDown();
-}, 1000); */
+};
+//setInterval(countDown, 1000);
+
+
+
+
+
+
+
+
+
+
+
 
 export default App;
