@@ -17,11 +17,7 @@
 import pokemon from "../data/pokemon/pokemon.js";
 //console.log(pokemon)
 
-const App = () => {
-  //const el = document.createElement("div");
-  //el.className = 'App';
-  //el.textContent = 'Hola mundo!'
-
+const start = () => {
   let shuffling = shuffle();
   //console.log(shuffling);
   let cardDeck = gameBoard(shuffling);
@@ -35,14 +31,10 @@ const shuffle = () => {
   let copyCards = originalCards.concat(originalCards);
   let shuffledCards = [];
 
-  for (let i = copyCards.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = copyCards[i];
-    copyCards[i] = copyCards[j];
-    copyCards[j] = temp;
+  copyCards.sort(() => Math.random() - 0.5) //retorna el array en orden aleatorio
 
-    shuffledCards = copyCards;
-  }
+  shuffledCards = copyCards;
+
   return shuffledCards; //retornará array de cartas aleatoriamente
 };
 
@@ -72,7 +64,6 @@ const gameBoard = (shuffledCards) => {
     cardsArray.push(card);
 
     //Llamando a la función playGame
-
     playGame(card);
   }
 
@@ -84,57 +75,88 @@ let selectedCards = [];
 let selectedCardsNames = [];
 
 let score = 0;
+let firstClicked = false; //por default antes de partir el juego no se ha dado el primer click
+let time = ""; //se sacó a variable global porque si no, no lograbamos parar el timer
+let lockGameBoard = false; //por default al iniciarl el juego el gameboard NO está bloqueado, pemrite dar click.
+//Más adelante hay que pasarlo a true para para innovilizar más selecciones durante la evaluación de match o no match
 
 //FUNCIÓN HANDLING CLICK
 const playGame = (card) => {
   card.addEventListener("click", () => {
+    if (lockGameBoard) return; //como el gameboard NO está bloqueado, se entra a la función
     card.classList.toggle("is-flipped");
 
+    if (!firstClicked) {
+      timerOn();  
+    }
+    firstClicked = true; // al darse el primer click en tarjeta se inicia el timer
     // Se hace un if donde pregunto si el lenght es < 2 para dejarle push al array de la primera carta
     if (selectedCardsNames.length < 2) {
       selectedCards.push(card);
       selectedCardsNames.push(card.dataset.name);
-
       // despues del push se pregunta si lo que hay en el array es = 2 si no es igual a 2 quedamos a la espera de la 2da carta
       if (selectedCardsNames.length === 2) {
         //Ya tenemos 2 cartas ahora hay que ver si son iguales o no
         //Si son iguales Suena el pikachu y se reinicia los array
         if (selectedCardsNames[0] === selectedCardsNames[1]) {
-          //let matchSound = new Audio("sound/match.mp3");
-          //matchSound.play();
-          selectedCards = [];
-          selectedCardsNames = [];
-          score++;
+          match();
         } else {
           //Si son diferentes se dan vuelta y se vacian los array , se le coloca un timeout para que de tiempo de voltear
-          setTimeout(() => {
-            selectedCards[0].classList.toggle("is-flipped");
-            selectedCards[1].classList.toggle("is-flipped");
-            selectedCards = [];
-            selectedCardsNames = [];
-          }, 1200);
+          lockGameBoard = true; //se bloquea el gameboard para evitar que el usuario seleccione más de un par de tarjetas
+          noMatch();
         }
-        drawScore(score);
-        if (score === 2) {
-          congratsPopup();
+        drawScore();
+        if (score === 9) {
+          winGame();
         }
       }
     }
   });
 };
 
-
-//FUNCIÓN SCORE
-const drawScore = (score) => {
-  let labelScore = document.getElementById("score");
-  labelScore.textContent = "Score: " + score;
+//FUNCIÓN MATCH
+const match = () => {
+  let matchSound = new Audio("sound/match.mp3");
+  matchSound.play();
+  selectedCards = [];
+  selectedCardsNames = [];
+  score++;
 };
 
+//FUNCIÓN NO MATCH
+const noMatch = () => {
+  setTimeout(() => {
+    selectedCards[0].classList.toggle("is-flipped");
+    selectedCards[1].classList.toggle("is-flipped");
+    selectedCards = [];
+    selectedCardsNames = [];
+    lockGameBoard = false; //se desbloquea el gameboard para seguir seleccionando parejas
+  }, 1500);
+};
 
-//Funcion open modal
+//FUNCIÓN SCORE
+const drawScore = () => { //esta función imprime el score en la pantalla
+  let labelScore = document.getElementById("score");
+  labelScore.textContent = "Score: " + score * 10;
+};
+
+//FUNCIÓN WIN
+const winGame = () => {
+  setTimeout(() => {  //se le coloca un delay para que el sonido de ganar no choque con el sonido del último pikachu match
+    let win = new Audio("sound/winner.mp3");
+    win.play();
+    congratsPopup();
+    timerOff();
+  }, 1300);
+};
+
+//FUNCIÓN OPEN MODAL
 const congratsPopup = () => {
   let winAlert = document.getElementById("openModal2");
   winAlert.classList.add("show-modalDialog");
+
+  let congratsMessage = document.getElementById("congrats-message");
+  congratsMessage.textContent = "Congrats, you have found all the matches!";
 
   let closeCongrats = document.getElementById("close");
   closeCongrats.addEventListener("click", () => {
@@ -142,41 +164,36 @@ const congratsPopup = () => {
   });
 };
 
+//FUNCIÓN START TIMER
+const timerOn = () => {
+  let secs = 0;
+  let mins = 0;
+  let SS = "";
+  let MM = "";
+  let timerEl = document.getElementById("timer");
 
-//FUNCIÓN TIMER
-let startTime = 0;
-let time = startTime * 60;
+  time = setInterval(() => {
+    secs++;
+    if (secs == 60) {
+      secs = 0;
+      mins++;
+    }
 
-const countDown = () => {
-  let countDownEl = document.getElementById("timer");
+    secs < 10 ? (SS = `0${secs}`) : (SS = `${secs}`);
+    mins < 10 ? (MM = `0${mins}`) : (SS = `${mins}`);
 
-  let minutes = Math.floor(time / 60);
-  let seconds = time % 60;
- 
-  if (seconds < 10) {
-    "0" + seconds;
-  } else {
-    seconds;
-  }
-
-  countDownEl.innerHTML = "Timer: " + `${minutes}m ${seconds}s`;
-  time++;
-
-  if (time <= 0) {
-    countDownEl.innerHTML = "EXPIRED";
-  }
+    timerEl.textContent = "Timer: " + `${MM}:${SS}`;
+  }, 1000);
 };
-//setInterval(countDown, 1000);
+
+//FUNCIÓN STOP TIMER
+const timerOff = () => {
+  clearInterval(time);
+};
 
 
 
+//export default App;
 
+export  {start};
 
-
-
-
-
-
-
-
-export default App;
