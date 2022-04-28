@@ -283,10 +283,15 @@ backface-visibility: visible;
 /*Pantallas de hasta 600px---entran celulares---*/
 @media (max-width: 600px) {
   .body-gameboard {
-    height: 100hv;
-    background-image: url("img/background2-celular.jpg");
-    background-repeat: no-repeat;
+    
+    height: 100vh;
+    background-image: url("img/background2-celular.jpg"); 
+    background-repeat: repeat-y;
+    background-position: center;
     background-size: cover;
+    min-height: 725px;
+    
+
   }
   
   .card-deck {
@@ -304,6 +309,7 @@ backface-visibility: visible;
     flex-direction: column;
     align-items: center;
   }
+
 }
 
 /*Pantallas de mínimo 900px--Tablets--*/
@@ -313,7 +319,7 @@ backface-visibility: visible;
   }
 
   .game-header {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -349,3 +355,20 @@ backface-visibility: visible;
     align-items: center;
   }
 }
+
+/*Pantallas max 600px entre celular (Modal)*/
+@media (max-width: 600px ){
+  .modalDialog > div   {
+
+    max-width: 80%;
+    height: 60%;
+    box-sizing: border-box;
+    position: relative;
+    margin: 2% auto;
+    border-radius: 5px;
+    background: #fff;
+    box-sizing: content-box;
+    /*opacity: 80%;  prueba cuando tengamos fondo*/ 
+  }
+}
+
