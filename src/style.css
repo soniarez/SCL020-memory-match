@@ -22,7 +22,7 @@ body {
   position:fixed;
   right:-50%; 
   top:0;
-  /* z-index:-1; */
+  z-index:-1; 
 }
 
 .bg2 {
@@ -103,7 +103,7 @@ h1 {
   vertical-align: middle;
   width: auto;
   word-break: keep-all;
-  /* z-index: 0; */
+  z-index: 0; 
 }
 
 @media (min-width: 768px) {
@@ -200,10 +200,12 @@ width: 48px;
 height: 48px;
 }
 
+/*Botones de estadísticas del juego (score, timer y restart)*/
 ul {
   display: flex;
   list-style: none;
   justify-content: space-evenly;
+  padding: 30px;
 
 }
 
@@ -258,7 +260,7 @@ position: absolute;
 height: 100%; 
 width: 100%;
 backface-visibility: hidden;
--webkit-backface-visibility: visible; /* Este después se debe poner hidden para ocultarlas*/
+-webkit-backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
 transform: rotateY(180deg);
 }
 
@@ -277,16 +279,25 @@ backface-visibility: visible;
   pointer-events: none; /*previene el evento de cliqueo*/
 }
 
-
 /*MEDIA QUERIES PARA GAMEBOARD*/
+/*Pantallas de hasta 600px---entran celulares---*/
 @media (max-width: 600px) {
+  .body-gameboard {
+    height: 100hv;
+    background-image: url("img/background2-celular.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
   .card-deck {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(2, auto);
   }
 
   .game-header {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
   }
   
   .game-statistics {
@@ -295,4 +306,46 @@ backface-visibility: visible;
   }
 }
 
+/*Pantallas de mínimo 900px--Tablets--*/
+@media (min-width: 700px) {
+  .card-deck {
+    grid-template-columns: repeat(5, auto);
+  }
 
+  .game-header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .game-tittle {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .game-statistics {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/*Pantallas de mínimo 1200px--Laptop genérica--*/
+@media (min-width: 1200px) {
+  .card-deck {
+    grid-template-columns: repeat(6, auto);
+  }
+
+  .game-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .game-statistics {
+    flex-direction: row;
+    align-items: center;
+  }
+}
