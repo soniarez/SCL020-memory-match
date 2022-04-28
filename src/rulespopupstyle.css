@@ -32,7 +32,7 @@
   
 }
 
-.modalDialog {
+.modalDialog  {
     position: fixed;
     font-family: "Open Sans";
     top: 0;
@@ -55,16 +55,19 @@
         
     }
 
-    .modalDialog > div {
+    .modalDialog > div   {
 
-        width: 600px;  height:400px;  padding: 70px;
+
+        width: 600px;  height:400px;  padding: 70px; 
         position: relative;
         margin: 2% auto;
-        padding: 5px 20px 13px 20px;
+        padding: 5px 20px 13px 20px; 
         border-radius: 5px;
         background: #fff;
+        box-sizing: content-box;
         /*opacity: 80%;  prueba cuando tengamos fondo*/ 
     }
+  
 
 .close {
   width: 30px;  height: 30px;  display: inline-block;
