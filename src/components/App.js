@@ -76,7 +76,7 @@ let selectedCardsNames = [];
 
 let score = 0;
 let firstClicked = false; //por default antes de partir el juego no se ha dado el primer click
-let time = ""; //se sacó a variable global porque si no, no lograbamos parar el timer
+let time = ""; 
 let lockGameBoard = false; //por default al iniciarl el juego el gameboard NO está bloqueado, pemrite dar click.
 //Más adelante hay que pasarlo a true para para innovilizar más selecciones durante la evaluación de match o no match
 
@@ -192,8 +192,6 @@ const timerOff = () => {
 };
 
 
-
 //export default App;
-
-export  {start};
+export {shuffle, start, playGame};
 
