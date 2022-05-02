@@ -27,6 +27,7 @@ const start = () => {
 
 //FUNCIÓN SHUFFLING CARTAS
 const shuffle = (pokemon) => {
+
   //let originalCards = pokemon.items;
   //let copyCards = originalCards.concat(originalCards);
   //let shuffledCards = [];
@@ -68,7 +69,6 @@ const gameBoard = (shuffledCards) => {
     card.onclick = () => playGame(card);
     //playGame(card);
   }
-
   return cardsArray; //retornará el listado de cartas
 };
 
@@ -85,6 +85,7 @@ let lockGameBoard = false; //por default al iniciarl el juego el gameboard NO es
 //FUNCIÓN HANDLING CLICK
 const playGame = (card) => {
   //card.addEventListener("click", () => {
+
   if (lockGameBoard) return; //como el gameboard NO está bloqueado, se entra a la función
   if (card.classList) {
     card.classList.toggle("is-flipped");
@@ -94,7 +95,7 @@ const playGame = (card) => {
     timerOn();
   }
   firstClicked = true; // al darse el primer click en tarjeta se inicia el timer
-  
+
   if (selectedCardsNames.length < 2) {
     selectedCards.push(card);
     selectedCardsNames.push(card.dataset.name);
