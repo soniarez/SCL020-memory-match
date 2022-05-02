@@ -260,7 +260,7 @@ position: absolute;
 height: 100%; 
 width: 100%;
 backface-visibility: hidden;
--webkit-backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
+-webkit-backface-visibility: visible; /* Este después se debe poner hidden para ocultarlas*/
 transform: rotateY(180deg);
 }
 
