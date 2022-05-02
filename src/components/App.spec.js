@@ -40,23 +40,15 @@ describe("playGame", () => {
   //no sé cómo testetar esta parte, el test encuentra problema en el evento de card.addEventListerner. 
   //no sé si es que primero debemos testear esa parte, cuando se da el primer click
   it("should return true when comparing two cards that are a match", () => {
-    expect(game.playGame('bulbasaur', 'bulbasaur')).toBe(true);
+    //console.log(document);
+    const cardtest = `<div class="card is-flipped" data-name="blastoise"><img class="front" src="https://www.serebii.net/pokemongo/pokemon/009.png"><img class="back" src="img/backcard.png"></div>`
+    expect(game.playGame(cardtest)).toBe(true);
   })
 });
 
 
 
-/*test("shuffle should properly shuffle data", () => {
-  expect(game.shuffle(pokeData)).not.toEqual(pokeData);
-})*/
 
-/*test("start  Should render without crashing", () => {
-  //console.log(start.start() )
-  expect(app.start()[0] instanceof HTMLElement).toBe(true);
-})
 
-test("there should be 18 HTMLElements", () => {
-  expect(app.start().length).toBe(18);
-}) */
 
 
