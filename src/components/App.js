@@ -19,7 +19,7 @@ import pokemon from "../data/pokemon/pokemon.js";
 
 const start = () => {
   let shuffling = shuffle(pokemon.items);
-  //console.log(shuffling);
+
   let cardDeck = gameBoard(shuffling);
 
   return cardDeck;
@@ -27,10 +27,15 @@ const start = () => {
 
 //FUNCIÓN SHUFFLING CARTAS
 const shuffle = (pokemon) => {
-  // let originalCards = pokemon.items;
+
+  //let originalCards = pokemon.items;
+  //let copyCards = originalCards.concat(originalCards);
+  //let shuffledCards = [];
   let shuffledCards = pokemon.concat(pokemon);
 
-  shuffledCards = shuffledCards.sort(() => Math.random() - 0.5); //retorna el array en orden aleatorio
+  shuffledCards = shuffledCards.sort(() => Math.random() - 0.5); 
+
+  //shuffledCards = copyCards;
 
   return shuffledCards; //retornará array de cartas aleatoriamente
 };
@@ -62,7 +67,7 @@ const gameBoard = (shuffledCards) => {
 
     //Llamando a la función playGame
     card.onclick = () => playGame(card);
-    // playGame(card);
+    //playGame(card);
   }
   return cardsArray; //retornará el listado de cartas
 };
@@ -73,12 +78,14 @@ let selectedCardsNames = [];
 
 let score = 0;
 let firstClicked = false; //por default antes de partir el juego no se ha dado el primer click
-let time = ""; //se sacó a variable global porque si no, no lograbamos parar el timer
+let time = "";
 let lockGameBoard = false; //por default al iniciarl el juego el gameboard NO está bloqueado, pemrite dar click.
 //Más adelante hay que pasarlo a true para para innovilizar más selecciones durante la evaluación de match o no match
 
 //FUNCIÓN HANDLING CLICK
 const playGame = (card) => {
+  //card.addEventListener("click", () => {
+
   if (lockGameBoard) return; //como el gameboard NO está bloqueado, se entra a la función
   if (card.classList) {
     card.classList.toggle("is-flipped");
@@ -88,6 +95,7 @@ const playGame = (card) => {
     timerOn();
   }
   firstClicked = true; // al darse el primer click en tarjeta se inicia el timer
+
   if (selectedCardsNames.length < 2) {
     selectedCards.push(card);
     selectedCardsNames.push(card.dataset.name);
@@ -95,7 +103,7 @@ const playGame = (card) => {
       if (selectedCardsNames[0] === selectedCardsNames[1]) {
         match();
       } else {
-        lockGameBoard = true;
+        lockGameBoard = true; //se bloquea el gameboard para evitar que el usuario seleccione más de un par de tarjetas
         noMatch();
       }
       drawScore();
@@ -104,6 +112,7 @@ const playGame = (card) => {
       }
     }
   }
+  //});
 };
 
 //FUNCIÓN MATCH
@@ -128,7 +137,6 @@ const noMatch = () => {
 
 //FUNCIÓN SCORE
 const drawScore = () => {
-  //esta función imprime el score en la pantalla
   let labelScore = document.getElementById("score");
   labelScore.textContent = "Score: " + score * 10;
 };
@@ -136,7 +144,6 @@ const drawScore = () => {
 //FUNCIÓN WIN
 const winGame = () => {
   setTimeout(() => {
-    //se le coloca un delay para que el sonido de ganar no choque con el sonido del último pikachu match
     let win = new Audio("sound/winner.mp3");
     win.play();
     congratsPopup();
@@ -186,5 +193,4 @@ const timerOff = () => {
 };
 
 //export default App;
-
-export { start, shuffle };
+export { shuffle, start, playGame };
