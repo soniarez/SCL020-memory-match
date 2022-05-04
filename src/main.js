@@ -16,10 +16,11 @@ window.closePopup = function closePopup() {
   popUp.classList.remove("show-modalDialog");
 };
 
+
+//APPENDIG GAMEBOARD A HTML
 const cardsArray = App.start();
 //console.log(cardsArray)
 
-//APPENDIG GAMEBOARD A HTML
 for (let index = 0; index < cardsArray.length; index++) {
   document.getElementById("cards").appendChild(cardsArray[index]);
 }

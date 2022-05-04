@@ -283,15 +283,12 @@ backface-visibility: visible;
 /*Pantallas de hasta 600px---entran celulares---*/
 @media (max-width: 600px) {
   .body-gameboard {
-    
     height: 100vh;
     background-image: url("img/background2-celular.jpg"); 
     background-repeat: repeat-y;
     background-position: center;
     background-size: cover;
     min-height: 725px;
-    
-
   }
   
   .card-deck {

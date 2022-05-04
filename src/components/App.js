@@ -85,7 +85,6 @@ let lockGameBoard = false; //por default al iniciarl el juego el gameboard NO es
 //FUNCIÓN HANDLING CLICK
 const playGame = (card) => {
   //card.addEventListener("click", () => {
-
   if (lockGameBoard) return; //como el gameboard NO está bloqueado, se entra a la función
   if (card.classList) {
     card.classList.toggle("is-flipped");
@@ -193,4 +192,4 @@ const timerOff = () => {
 };
 
 //export default App;
-export { shuffle, start, playGame };
+export { shuffle, start, playGame, gameBoard };
