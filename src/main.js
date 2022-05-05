@@ -59,12 +59,6 @@ const gameBoard = (shuffledCards) => {
   return cardsArray; //retornará el listado de cartas
 };
 
-<<<<<<< HEAD
-
-//APPENDIG GAMEBOARD A HTML
-const cardsArray = App.start();
-//console.log(cardsArray)
-=======
 //FUNCIÓN HANDLING CLICK
 const playGame = (card) => {
 
@@ -164,7 +158,6 @@ const start = () => {
 
 
 const cardsArray = start(); 
->>>>>>> 348f9fc835d098b76c1cf1704864f6540782d7f7
 
 for (let index = 0; index < cardsArray.length; index++) {
   document.getElementById("cards").appendChild(cardsArray[index]);
