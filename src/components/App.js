@@ -17,6 +17,7 @@
 import pokemon from "../data/pokemon/pokemon.js";
 //console.log(pokemon)
 
+<<<<<<< HEAD
 const start = () => {
   let shuffling = shuffle(pokemon.items);
 
@@ -133,46 +134,50 @@ const noMatch = () => {
     lockGameBoard = false; //se desbloquea el gameboard para seguir seleccionando parejas
   }, 1500);
 };
+=======
+>>>>>>> 348f9fc835d098b76c1cf1704864f6540782d7f7
 
 //FUNCIÓN SCORE
-const drawScore = () => {
-  let labelScore = document.getElementById("score");
-  labelScore.textContent = "Score: " + score * 10;
+const drawScoreSetValue = (score) => {
+  console.log('score', score)
+  // let labelScore = document.getElementById("score");
+  return "Score: " + score * 10;
 };
 
-//FUNCIÓN WIN
-const winGame = () => {
-  setTimeout(() => {
-    let win = new Audio("sound/winner.mp3");
-    win.play();
-    congratsPopup();
-    timerOff();
-  }, 1300);
+const clearSelectCards = (selectedCards) =>{
+  selectedCards = [];
+  return selectedCards;
+}
+const clearSelectedCardsNames = (selectedCardsNames) =>{
+  selectedCardsNames = [];
+  return selectedCardsNames
+}
+const sumScore = (score)=>{
+  score += 1;
+  return score;
+}
+
+const sound = (path) =>{
+  if(path){
+    let matchSound = new Audio(path);
+    matchSound.play();
+  }
+  return true;
+}
+//FUNCIÓN SHUFFLING CARTAS
+const shuffle = (pokemon) => { 
+  let duplicate = pokemon.concat(pokemon);
+  duplicate.sort(() => Math.random() - 0.5); 
+  return duplicate; //retornará array de cartas aleatoriamente
 };
+let time =  '';
+let timerEl = '';
 
-//FUNCIÓN OPEN MODAL
-const congratsPopup = () => {
-  let winAlert = document.getElementById("openModal2");
-  winAlert.classList.add("show-modalDialog");
-
-  let congratsMessage = document.getElementById("congrats-message");
-  congratsMessage.textContent = "Congrats, you have found all the matches!";
-
-  let closeCongrats = document.getElementById("close");
-  closeCongrats.addEventListener("click", () => {
-    winAlert.classList.remove("show-modalDialog");
-  });
-};
-
-//FUNCIÓN START TIMER
-const timerOn = () => {
-  let secs = 0;
-  let mins = 0;
-  let SS = "";
-  let MM = "";
-  let timerEl = document.getElementById("timer");
-
-  time = setInterval(() => {
+let secs = 0;
+let mins = 0;
+let SS = "";
+let MM = "";
+const getTime = () =>{ 
     secs++;
     if (secs == 60) {
       secs = 0;
@@ -182,14 +187,24 @@ const timerOn = () => {
     secs < 10 ? (SS = `0${secs}`) : (SS = `${secs}`);
     mins < 10 ? (MM = `0${mins}`) : (SS = `${mins}`);
 
-    timerEl.textContent = "Timer: " + `${MM}:${SS}`;
-  }, 1000);
-};
+    timerEl = "Timer: " + `${MM}:${SS}`;
+    console.log(timerEl, 'timerEl')
+    return timerEl; 
+}
+ 
 
-//FUNCIÓN STOP TIMER
-const timerOff = () => {
-  clearInterval(time);
-};
-
+ 
 //export default App;
+<<<<<<< HEAD
 export { shuffle, start, playGame, gameBoard };
+=======
+export {  
+  drawScoreSetValue, 
+  clearSelectCards,
+  clearSelectedCardsNames,
+  sumScore,
+  sound,
+  shuffle, 
+  getTime
+};
+>>>>>>> 348f9fc835d098b76c1cf1704864f6540782d7f7
