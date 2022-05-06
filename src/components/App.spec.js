@@ -7,55 +7,72 @@
   });
 }); */
 
-import { shuffle, start, playGame, gameBoard } from "./App.js";
-import pokemon from "../data/pokemon/pokemon.js";
+import {
+  shuffle,
+  clearSelectCards,
+  sound,
+  clearSelectedCardsNames,
+  sumScore,
+  drawScoreSetValue,
+} from "./App.js";
 
-describe("App.js", () => {
-  let pokemons = pokemon.items;
-  it("should return a shuffle deck", () => {
-    // const names = ["Miguel", "Alejandra", "Gabriela"];
-    // const nameConcat = [
-    //   "Miguel",
-    //   "Alejandra",
-    //   "Gabriela",
-    //   "Miguel",
-    //   "Alejandra",
-    //   "Gabriela",
-    // ];
-    const shuffleArr = shuffle(pokemons);
-    expect(shuffleArr).toHaveLength(18);
-    expect(shuffleArr).not.toEqual(pokemons);
+describe("Shuffle Fucntion", () => {
+  it("Should return a shuffle deck", () => {
+    const nameConcat = [
+      "Sonia",
+      "Heike",
+      "Alejandra",
+      "Sonia",
+      "Heike",
+      "Alejandra",
+    ];
+    const shuffleArr = shuffle(nameConcat);
+    expect(shuffleArr).toHaveLength(12);
+    expect(shuffleArr).not.toEqual(nameConcat);
   });
-  //--Shuffle
-  it("should be a function", () => {
-    expect(typeof shuffle).toBe("function");
-  });
-  it("should properly shuffle data", () => {
-    expect(shuffle(pokemons)).not.toEqual(pokemons);
-  });
+});
 
-  //--Start 
-  it("should be a function", () => {
-    expect(typeof start).toBe("function");
+describe("Function clearSelectCards", () => {
+  it("Should return a clear Array", () => {
+    const fullArray = ["Sonia", "Heike", "Alejandra"];
+    expect(clearSelectCards(fullArray)).toEqual([]);
   });
-  it("should render without crashing", () => {
-    //console.log(game.start());
-    expect(start()[0] instanceof HTMLElement).toBe(true);
+});
+
+describe("Function clearSelectCardsName", () => {
+  it("Should return a clear Cards Name Array", () => {
+    const fullNameArray = ["Chocolate", "Vanilla", "Cherry"];
+    expect(clearSelectedCardsNames(fullNameArray)).toEqual([]);
   });
-  //--playGame
-  it("should be a function", () => {
-    expect(typeof playGame).toBe("function");
+});
+
+describe("Function Sound", () => {
+  it("Sound should be a HTMLAudioElement", () => {
+    let testSound = "sound/match.mp3";
+    expect(sound(testSound) instanceof HTMLAudioElement);
   });
-  //no sé cómo testetar esta parte, el test encuentra problema en el evento de card.addEventListerner.
-  //no sé si es que primero debemos testear esa parte, cuando se da el primer click
-  it.skip("should return true when comparing two cards that are a match", () => {
-    //console.log(document);
-    const cardtest = `<div class="card is-flipped" data-name="blastoise"><img class="front" src="https://www.serebii.net/pokemongo/pokemon/009.png"><img class="back" src="img/backcard.png"></div>`;
-    expect(playGame(cardtest)).toBe(true);
+});
+
+describe("Function SumScore", () => {
+  it("should add 1 to the current score", () => {
+    let testScore = 5;
+    expect(sumScore(testScore)).toBe(6);
   });
-  //--gameBoard
-  it("Should bring a Array.length > 0", () => {
-    expect(gameBoard(pokemons).length > 1);
-    expect(gameBoard(pokemons)[0] instanceof HTMLElement);
+});
+
+describe("Function drawScoreSetValue", () => {
+  it("Should be an HTML Element", () => {
+    let mockScore = 2;
+    expect(drawScoreSetValue(mockScore) instanceof HTMLElement);
+  });
+  it("should be a typeof string", () => {
+    let mockScore = 2;
+    let testResult = drawScoreSetValue(mockScore);
+    expect(typeof testResult === "string").toBe(true);
+  });
+  it("the result should include the score", () => {
+    let mockScore = 2;
+    let testResult = drawScoreSetValue(mockScore);
+    expect(testResult).toMatch("20");
   });
 });

@@ -1,4 +1,3 @@
-
 import * as App from "./components/App.js";
 import pokemon from "./data/pokemon/pokemon.js";
 
@@ -25,7 +24,7 @@ window.startPopup = function startPopup() {
 //Al darle al la x en onclick se cambian las propiedades del CSS del popup al Hide
 window.closePopup = function closePopup() {
   popUp.classList.remove("show-modalDialog");
-}; 
+};
 
 //FUNCIÓN CREANDO ELEMENTOS DEL DOM
 const gameBoard = (shuffledCards) => {
@@ -51,24 +50,22 @@ const gameBoard = (shuffledCards) => {
     card.appendChild(back);
 
     //Llamando a la función playGame
-    card.onclick = () => playGame(card); 
+    card.onclick = () => playGame(card);
 
     cardsArray.push(card);
-
   }
   return cardsArray; //retornará el listado de cartas
 };
 
 //FUNCIÓN HANDLING CLICK
 const playGame = (card) => {
-
   if (lockGameBoard) return; //como el gameboard NO está bloqueado, se entra a la función
   card.classList.toggle("is-flipped");
 
   if (!firstClicked) {
     timerStart();
   }
-  console.log(firstClicked,"click")
+  // console.log(firstClicked, "click");
   firstClicked = true; // al darse el primer click en tarjeta se inicia el timer
 
   if (selectedCardsNames.length < 2) {
@@ -81,7 +78,7 @@ const playGame = (card) => {
         lockGameBoard = true; //se bloquea el gameboard para evitar que el usuario seleccione más de un par de tarjetas
         noMatch();
       }
-      console.log('score 1111', score)
+      // console.log("score 1111", score);
       drawScore();
       if (score === 9) {
         winGame();
@@ -92,11 +89,10 @@ const playGame = (card) => {
 
 //FUNCIÓN MATCH
 const match = () => {
-   
-  App.sound("sound/match.mp3") 
-  selectedCards = App.clearSelectCards(selectedCards); 
-  selectedCardsNames = App.clearSelectedCardsNames(selectedCardsNames); 
-  score = App.sumScore(score)
+  App.sound("sound/match.mp3");
+  selectedCards = App.clearSelectCards(selectedCards);
+  selectedCardsNames = App.clearSelectedCardsNames(selectedCardsNames);
+  score = App.sumScore(score);
 };
 
 //FUNCIÓN NO MATCH
@@ -104,20 +100,18 @@ const noMatch = () => {
   setTimeout(() => {
     selectedCards[0].classList.toggle("is-flipped");
     selectedCards[1].classList.toggle("is-flipped");
-    selectedCards = App.clearSelectCards(selectedCards); 
-    selectedCardsNames = App.clearSelectedCardsNames(selectedCardsNames); 
+    selectedCards = App.clearSelectCards(selectedCards);
+    selectedCardsNames = App.clearSelectedCardsNames(selectedCardsNames);
     lockGameBoard = false; //se desbloquea el gameboard para seguir seleccionando parejas
   }, 1500);
 };
 
-
 //FUNCIÓN WIN
 const winGame = () => {
   setTimeout(() => {
-    App.sound("sound/winner.mp3") 
+    App.sound("sound/winner.mp3");
     congratsPopup();
     clearInterval(time);
-
   }, 1300);
 };
 
@@ -137,27 +131,23 @@ const congratsPopup = () => {
 
 //FUNCIÓN START TIMER
 const timerStart = () => {
-  
   let timerID = document.getElementById("timer");
   time = setInterval(() => {
-    timerID.textContent = App.getTime()
+    timerID.textContent = App.getTime();
   }, 1000);
- 
 };
- 
 
 const drawScore = () => {
-  let labelScore = document.getElementById("score"); 
-  labelScore.textContent = App.drawScoreSetValue(score)
+  let labelScore = document.getElementById("score");
+  labelScore.textContent = App.drawScoreSetValue(score);
 };
 
 const start = () => {
-  let shuffling = App.shuffle(pokemon.items); 
+  let shuffling = App.shuffle(pokemon.items);
   return gameBoard(shuffling);
 };
 
-
-const cardsArray = start(); 
+const cardsArray = start();
 
 for (let index = 0; index < cardsArray.length; index++) {
   document.getElementById("cards").appendChild(cardsArray[index]);
@@ -168,3 +158,5 @@ let restartGame = document.getElementById("restart");
 restartGame.addEventListener("click", () => {
   document.location.reload();
 });
+
+export { start };
