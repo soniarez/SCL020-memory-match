@@ -14,12 +14,12 @@
 //   .catch(console.error);
 //
 
-import pokemon from "../data/pokemon/pokemon.js";
+// import pokemon from "../data/pokemon/pokemon.js";
 //console.log(pokemon)
 
 //FUNCIÓN SCORE
 const drawScoreSetValue = (score) => {
-  console.log("score", score);
+  // console.log("score", score);
   // let labelScore = document.getElementById("score");
   return "Score: " + score * 10;
 };
@@ -41,9 +41,11 @@ const sound = (path) => {
   if (path) {
     let matchSound = new Audio(path);
     matchSound.play();
+    return matchSound;
   }
   return true;
 };
+
 //FUNCIÓN SHUFFLING CARTAS
 const shuffle = (pokemon) => {
   let duplicate = pokemon.concat(pokemon);
@@ -67,7 +69,7 @@ const getTime = () => {
   mins < 10 ? (MM = `0${mins}`) : (SS = `${mins}`);
 
   timerEl = "Timer: " + `${MM}:${SS}`;
-  console.log(timerEl, "timerEl");
+  // console.log(timerEl, "timerEl");
   return timerEl;
 };
 

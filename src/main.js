@@ -65,7 +65,7 @@ const playGame = (card) => {
   if (!firstClicked) {
     timerStart();
   }
-  console.log(firstClicked, "click");
+  // console.log(firstClicked, "click");
   firstClicked = true; // al darse el primer click en tarjeta se inicia el timer
 
   if (selectedCardsNames.length < 2) {
@@ -78,7 +78,7 @@ const playGame = (card) => {
         lockGameBoard = true; //se bloquea el gameboard para evitar que el usuario seleccione más de un par de tarjetas
         noMatch();
       }
-      console.log("score 1111", score);
+      // console.log("score 1111", score);
       drawScore();
       if (score === 9) {
         winGame();
@@ -158,3 +158,5 @@ let restartGame = document.getElementById("restart");
 restartGame.addEventListener("click", () => {
   document.location.reload();
 });
+
+export { start };
