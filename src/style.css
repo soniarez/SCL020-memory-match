@@ -259,7 +259,7 @@ background-color: aliceblue;
 position: absolute; 
 height: 100%; 
 width: 100%;
-backface-visibility: visible;
+/*backface-visibility: visible; */
 -webkit-backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
 transform: rotateY(180deg);
 }
