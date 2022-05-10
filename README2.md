@@ -24,4 +24,5 @@ Se realizan y aprueban los test del codigo de Q/A.
 Se Realiza y aprobo testeo de funcionabilidad e producto.
 
 ##Recorrido del Usuario:
-(/src/img/user-journey.png)
+![User-Journey](src/img/user-journey.png)
+
