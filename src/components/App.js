@@ -52,6 +52,7 @@ const shuffle = (pokemon) => {
   duplicate.sort(() => Math.random() - 0.5);
   return duplicate; //retornará array de cartas aleatoriamente
 };
+
 let timerEl = "";
 
 let secs = 0;

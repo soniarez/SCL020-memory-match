@@ -1,8 +1,19 @@
+//import App from "./components/App.js";
+//console.log(App);  
+
+
 import * as App from "./components/App.js";
 import pokemon from "./data/pokemon/pokemon.js";
+//Importing data from json
 
-//import App from "./components/App.js";
-//console.log(App);
+ /*const fetcher = async() => {
+  let response = await fetch("./data/pokemon/pokemon.json");
+  let data = await response.json();
+  return data;
+}
+
+let pokemon = await fetcher(); */
+
 
 //Sacamos las variables, porque al mandarlas como parametro siempre se recibia el mismo array de las primeras cartas seleccionadas
 let selectedCards = [];
@@ -24,6 +35,12 @@ window.startPopup = function startPopup() {
 //Al darle al la x en onclick se cambian las propiedades del CSS del popup al Hide
 window.closePopup = function closePopup() {
   popUp.classList.remove("show-modalDialog");
+};
+
+
+const start = () => {
+  let shuffling = App.shuffle(pokemon.items);
+  return gameBoard(shuffling);
 };
 
 //FUNCIÓN CREANDO ELEMENTOS DEL DOM
@@ -54,8 +71,15 @@ const gameBoard = (shuffledCards) => {
 
     cardsArray.push(card);
   }
+
   return cardsArray; //retornará el listado de cartas
 };
+
+const cardsArray = start();
+
+for (let index = 0; index < cardsArray.length; index++) {
+  document.getElementById("cards").appendChild(cardsArray[index]);
+} 
 
 //FUNCIÓN HANDLING CLICK
 const playGame = (card) => {
@@ -74,6 +98,7 @@ const playGame = (card) => {
     if (selectedCardsNames.length === 2) {
       if (selectedCardsNames[0] === selectedCardsNames[1]) {
         match();
+        selectedCards
       } else {
         lockGameBoard = true; //se bloquea el gameboard para evitar que el usuario seleccione más de un par de tarjetas
         noMatch();
@@ -142,16 +167,6 @@ const drawScore = () => {
   labelScore.textContent = App.drawScoreSetValue(score);
 };
 
-const start = () => {
-  let shuffling = App.shuffle(pokemon.items);
-  return gameBoard(shuffling);
-};
-
-const cardsArray = start();
-
-for (let index = 0; index < cardsArray.length; index++) {
-  document.getElementById("cards").appendChild(cardsArray[index]);
-}
 
 //FUNCIÓN RESTART
 let restartGame = document.getElementById("restart");
@@ -159,4 +174,4 @@ restartGame.addEventListener("click", () => {
   document.location.reload();
 });
 
-export { start };
+
