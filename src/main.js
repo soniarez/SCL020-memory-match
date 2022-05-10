@@ -103,7 +103,6 @@ const playGame = (card) => {
         lockGameBoard = true; //se bloquea el gameboard para evitar que el usuario seleccione más de un par de tarjetas
         noMatch();
       }
-      // console.log("score 1111", score);
       drawScore();
       if (score === 9) {
         winGame();
