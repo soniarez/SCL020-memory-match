@@ -285,7 +285,12 @@ transform : rotateY(180deg);
 
 .back {
 cursor: pointer;
-backface-visibility: visible; 
+/*backface-visibility: visible; */
+backface-visibility: visible; /* Este después se debe poner hidden para ocultarlas*/
+-webkit-backface-visibility: visible;
+    -moz-backface-visibility: visible; /*Firefox*/
+    -ms-backface-visibility: visible; /*Explorer*/
+    -moz-backface-visibility: visible; /*Opera*/
 } 
 
 .front, .back {
@@ -293,9 +298,30 @@ backface-visibility: visible;
   box-shadow: rgba(0,0,0,0.5) 0px 5px 20px  /*rgba: los primeros 3 valores dan el color (negro), el 4to valor es opacity. 0px y 5px corresponden a la orientación de la shadow en ejes x y y. 15px es el blur*/ 
 }
 
+.back {
+  transition: 0.8s all;
+  -webkit-transition: 0.8s all;;
+  -moz-transition: 0.8s all;; /*Firefox*/
+  -ms-transition: 0.8s all;; /*Explorer*/
+  -o-transition: 0.8s all;; /*Opera*/
+}
+
 .card.is-flipped {
-  transform: rotateY(180deg);
+  /*transform: rotateY(180deg); */
+  transform : rotateY(180deg);  
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg); /*Firefox*/
+    -ms-transform: rotateY(180deg); /*Explorer*/
+    -o-transform: rotateY(180deg); /*Opera*/
   pointer-events: none; /*previene el evento de cliqueo*/
+}
+
+.card.is-flipped .front{
+  z-index: 5;
+}
+
+.card.is-flipped .back{
+  opacity: 0;
 }
 
 /*MEDIA QUERIES PARA GAMEBOARD*/
@@ -333,7 +359,7 @@ backface-visibility: visible;
 @media (min-device-width: 300px) and (max-device-width: 850px) {
   .card-deck {
     grid-template-columns: repeat(3, auto);
-    grid-gap: 2rem;
+    grid-gap: 1.5rem;
     margin: 0% auto; 
     display: grid;
     justify-content: center;
@@ -343,8 +369,8 @@ backface-visibility: visible;
 
   .card {
     margin-top: 20%;
-    width: 105%;
-    height: 105%;
+    width: 100%;
+    height: 100%;
     position: relative;
     /*transition: transform 1s; */
     /*transform-style: preserve-3d; /*para dar el efecto de stack (pegar) el front y back de la tarjeta*/
@@ -367,8 +393,8 @@ backface-visibility: visible;
   .front {
     background-color: aliceblue; 
     position: absolute; 
-    height: 105%; 
-    width: 105%;
+    height: 100%; 
+    width: 100%;
     /*backface-visibility: visible; */
     /*-webkit-backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
     /*transform: rotateY(180deg); */
