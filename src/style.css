@@ -299,11 +299,11 @@ backface-visibility: visible; /* Este después se debe poner hidden para ocultar
 }
 
 .back {
-  transition: 0.3s all;
-  -webkit-transition: 0.3s all;;
-  -moz-transition: 0.3s all;; /*Firefox*/
-  -ms-transition: 0.3s all;; /*Explorer*/
-  -o-transition: 0.3s all;; /*Opera*/
+  transition: 0.9s all;
+  -webkit-transition: 0.9s all;;
+  -moz-transition: 0.9s all;; /*Firefox*/
+  -ms-transition: 0.9s all;; /*Explorer*/
+  -o-transition: 0.9s all;; /*Opera*/
 }
 
 .card.is-flipped {
@@ -321,7 +321,6 @@ backface-visibility: visible; /* Este después se debe poner hidden para ocultar
 }
 
 .card.is-flipped .back{
-  z-index: -1;
   opacity: 0;
 }
 
