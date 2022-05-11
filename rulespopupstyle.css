@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+.pop-header
+    {
+        display: flex;
+        flex-direction: column;
+        margin: 0px;
+        width: 100%;
+        background-color: #ffffff!important;
+        height: auto;
+        
+    }
+ 
+.pop-header p
+{
+  color:white;
+  font-size: 40px;
+  line-height: 65px;
+  font-family: "Press Start 2P";
+  background-color:red;
+  float:left;
+  margin: 0px;
+  
+  width:100%;
+  height: 60px;
+  top: 20px;
+  position:relative;
+  display:inline-block;
+  padding:1px;
+  
+}
+
+.modalDialog  {
+    position: fixed;
+    font-family: "Open Sans";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    /* z-index: 99999; */
+    opacity:0; 
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    visibility: hidden;
+    }
+
+
+    .modalDialog:target {
+        opacity:1;
+        pointer-events: auto;
+        
+    }
+
+    .modalDialog > div   {
+
+
+        width: 600px;  height:400px;  padding: 70px; 
+        position: relative;
+        margin: 2% auto;
+        padding: 5px 20px 13px 20px; 
+        border-radius: 5px;
+        background: #fff;
+        box-sizing: content-box;
+        /*opacity: 80%;  prueba cuando tengamos fondo*/ 
+    }
+  
+
+.close {
+  width: 30px;  height: 30px;  display: inline-block;
+  position: absolute;  top: 40px;  font-size:20px;  right: 30px;
+  -webkit-transition: all ease 0.5s;  transition: all ease 0.5s;
+  border-radius: 50%;  background: #ffffff;  font-weight: bold;
+  color: #ff0000;  text-align:center; text-decoration: none; cursor:pointer;
+  /* z-index: 99999; */
+    }
+
+    .close:hover {  -webkit-transform: rotate(180deg);
+  transform: rotate(400deg);
+  /* z-index: 99999; */
+    }
+
+    .show-modalDialog {    opacity: 1;    visibility: visible;    transform: scale(1.0);
+        transition: visibility 0s linear 0s, opacity 1.25s 0s, transform 1.25s;
+        z-index: 999999;
+       
+    }
+    .hide-modalDialog {    opacity: 0;    visibility: hidden ; 
+      
+    }
+
+h3{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    top: 35px;
+    font-family: "Sora";
+}
+
+h2{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  text-align: center;
+  font-family: "Sora";
+  font-size: 35px;
+
+}
+
+.pokeballmodal{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  position: relative;
+}
+
+#pokeball{
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  top: -10px;
+  width:40px;
+  height:40px;  
+}
+

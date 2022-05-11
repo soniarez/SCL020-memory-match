@@ -1,0 +1,427 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+
+html {
+  height:100%;
+}
+
+body {
+  margin:0;
+  height: 100vh;
+}
+
+/* ---------------------------INICIO HOME BG: BACKGROUND--------------------------------------------------------------- */
+.bg {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #f62d14 50%,  #ffffff 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%; 
+  top:0;
+  z-index:-1; 
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:4s;
+}
+
+.bg3 {
+  animation-duration:5s;
+}
+
+.game-info {
+  background-color:rgba(255,255,255,.8);
+  border-radius:.25em;
+  box-shadow:0 0 .25em rgba(0,0,0,.25);
+  box-sizing:border-box;
+  left:50%;
+  padding:10vmin;
+  position:fixed;
+  text-align:center;
+  top:50%;
+  transform:translate(-50%, -50%);
+}
+
+.pokeball-brand {
+  max-width: 35%;
+  height: auto;
+}
+
+h1 {
+  font-family:"Press Start 2P";
+}
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+
+/* ---------------------------FIN HOME BG: BACKGROUND--------------------------------------------------------------- */
+
+/* ---------------------------INICIO START BTN------------------------------------------------------------------------ */
+.start-btn {
+  font-family: "Press Start 2P";
+  font-size: 30px;
+  align-items: center;
+  appearance: none;
+  background-clip: padding-box;
+  background-color: initial;
+  background-image: none;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  flex-direction: row;
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 800;
+  justify-content: center;
+  line-height: 24px;
+  margin: 0;
+  min-height: 64px;
+  outline: none;
+  overflow: visible;
+  padding: 19px 26px;
+  pointer-events: auto;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  width: auto;
+  word-break: keep-all;
+  z-index: 0; 
+}
+
+@media (min-width: 768px) {
+  .start-btn {
+    padding: 19px 32px;
+  }
+}
+
+.start-btn:before,
+.start-btn:after {
+  border-radius: 80px;
+}
+
+.start-btn:before {
+  background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -2; 
+}
+
+.start-btn:after {
+  background-color: initial;
+  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+  bottom: 4px;
+  content: "";
+  display: block;
+  left: 4px;
+  overflow: hidden;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  transition: all 100ms ease-out;
+  z-index: -1; 
+}
+
+.start-btn:hover:not(:disabled):before {
+  background: linear-gradient(92.83deg, rgb(255, 116, 38) 0%, rgb(249, 58, 19) 100%);
+}
+
+.start-btn:hover:not(:disabled):after {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  transition-timing-function: ease-in;
+  opacity: 0;
+}
+
+.start-btn:active:not(:disabled) {
+  color: #ccc;
+}
+
+.start-btn:active:not(:disabled):before {
+  background-image: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+}
+
+.start-btn:active:not(:disabled):after {
+  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+  bottom: 4px;
+  left: 4px;
+  right: 4px;
+  top: 4px;
+}
+
+.start-btn:disabled {
+  cursor: default;
+  opacity: .24;
+}
+/* ---------------------------FIN START BTN------------------------------------------------------------------------ */
+
+
+/* ---------------------------GAMEBOARD SCREEN------------------------------------------------------------------------ */
+.body-gameboard {
+  height: 100vh;
+  background-image: url("img/background2jpg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.game-header {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.pikachu-gif {
+width: 48px;
+height: 48px;
+}
+
+/*Botones de estadísticas del juego (score, timer y restart)*/
+ul {
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+  padding: 30px;
+
+}
+
+ul li {
+  background-color: #6F3F71;
+  width: 10%;
+  height: 100%;
+  border-radius: 10px;
+  color: #fff;
+  padding: 5px;
+  font-family: Sora;
+  font-size: 1rem;
+  text-align: center;
+  align-content: center;
+}
+
+ul li:last-child {
+  cursor: pointer;
+}
+
+
+/*Este es el div parent del set de tarjetas*/
+.card-deck {
+  max-width: 1200px; 
+  margin: 0% auto; 
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  grid-template-columns: repeat(6, auto);
+  grid-gap: 1.5rem;
+  perspective: 800px; /*va en conjunto con preserve-3d de .card*/
+} 
+
+/*Este es el div de cada tarjeta*/
+.card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  /*transition: transform 1s; */
+  transform-style: preserve-3d; /*para dar el efecto de stack (pegar) el front y back de la tarjeta*/
+  transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Es la curva definida por 4 puntos. Estos valores representan el inicio y fin en tiempo de la curva, es decir, del giro o vuelta*/
+  border-radius: 12px;
+}
+
+/*Estas son las tarjetas (imágenes) de front y back*/
+.front {
+background-color: aliceblue; 
+position: absolute; 
+height: 100%; 
+width: 100%;
+/*backface-visibility: visible; */
+backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
+transform: rotateY(180deg);
+}
+
+.back {
+cursor: pointer;
+backface-visibility: visible; 
+} 
+
+.front, .back {
+  border-radius: 12px;
+  box-shadow: rgba(0,0,0,0.5) 0px 5px 20px  /*rgba: los primeros 3 valores dan el color (negro), el 4to valor es opacity. 0px y 5px corresponden a la orientación de la shadow en ejes x y y. 15px es el blur*/ 
+}
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+  pointer-events: none; /*previene el evento de cliqueo*/
+}
+
+/*MEDIA QUERIES PARA GAMEBOARD*/
+/*Pantallas de hasta 600px---entran celulares---*/
+@media (max-width: 600px) {
+  .body-gameboard {
+    height: 100vh;
+    background-image: url("img/background2-celular.jpg"); 
+    background-repeat: repeat-y;
+    background-position: center;
+    background-size: cover;
+    min-height: 725px;
+  }
+  
+  .card-deck {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  .game-header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .game-statistics {
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+
+}
+
+/*Pantallas de mínimo 700px--Tablets--*/
+@media (min-device-width: 300px) and (max-device-width: 850px) {
+  .card-deck {
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 2rem;
+    margin: 0% auto; 
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+
+  .card {
+    margin-top: 20%;
+    width: 105%;
+    height: 105%;
+    position: relative;
+    /*transition: transform 1s; */
+    transform-style: preserve-3d; /*para dar el efecto de stack (pegar) el front y back de la tarjeta*/
+    transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Es la curva definida por 4 puntos. Estos valores representan el inicio y fin en tiempo de la curva, es decir, del giro o vuelta*/
+    border-radius: 12px;
+  }
+
+  .front {
+    background-color: aliceblue; 
+    position: absolute; 
+    height: 105%; 
+    width: 105%;
+    /*backface-visibility: visible; */
+    backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
+    transform: rotateY(180deg);
+    }
+    
+    .back {
+    cursor: pointer;
+    backface-visibility: visible;
+    height: 100%; 
+    width: 100%; 
+    }
+
+
+  .game-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .game-tittle {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .game-statistics {
+    flex-direction: row;
+    align-items: center;
+  }
+
+
+  ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    margin-bottom: 10%;
+  }
+  
+  ul li {
+    background-color: #6F3F71;
+    width: 15%;
+    height: 100%;
+    border-radius: 10px;
+    color: #fff;
+    padding: 5px;
+    font-family: Sora;
+    font-size: 1rem;
+    text-align: center;
+    align-content: center;
+  }
+
+}
+
+/*Pantallas de mínimo 1200px--Laptop genérica--*/
+@media (min-width: 1200px) {
+  .card-deck {
+    grid-template-columns: repeat(6, auto);
+  }
+
+  .game-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .game-statistics {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/*Pantallas max 600px, entra celular (Modal)*/
+@media (max-width: 600px ){
+  .modalDialog > div   {
+
+    max-width: 80%;
+    height: 60%;
+    box-sizing: border-box;
+    position: relative;
+    margin: 2% auto;
+    border-radius: 5px;
+    background: #fff;
+    box-sizing: content-box;
+    /*opacity: 80%;  prueba cuando tengamos fondo*/ 
+  }
+}
+
