@@ -268,14 +268,12 @@ background-color: aliceblue;
 position: absolute; 
 height: 100%; 
 width: 100%;
-/*backface-visibility: visible; */
 backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
 -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden; /*Firefox*/
     -ms-backface-visibility: hidden; /*Explorer*/
     -moz-backface-visibility: hidden; /*Opera*/
 
-/*transform: rotateY(180deg); */
 transform : rotateY(180deg);  
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg); /*Firefox*/
@@ -285,9 +283,8 @@ transform : rotateY(180deg);
 
 .back {
 cursor: pointer;
-/*backface-visibility: visible; */
-backface-visibility: visible; /* Este después se debe poner hidden para ocultarlas*/
--webkit-backface-visibility: visible;
+backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
+-webkit-backface-visibility: hidden;
     -moz-backface-visibility: visible; /*Firefox*/
     -ms-backface-visibility: visible; /*Explorer*/
     -moz-backface-visibility: visible; /*Opera*/
@@ -307,7 +304,6 @@ backface-visibility: visible; /* Este después se debe poner hidden para ocultar
 }
 
 .card.is-flipped {
-  /*transform: rotateY(180deg); */
   transform : rotateY(180deg);  
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg); /*Firefox*/
@@ -323,6 +319,8 @@ backface-visibility: visible; /* Este después se debe poner hidden para ocultar
 .card.is-flipped .back{
   opacity: 0;
 }
+
+/*-----------------------------------------------------MEDIA QUERIES----------------------------------------*/
 
 /*MEDIA QUERIES PARA GAMEBOARD*/
 /*Pantallas de hasta 600px---entran celulares---*/
@@ -371,22 +369,7 @@ backface-visibility: visible; /* Este después se debe poner hidden para ocultar
     margin-top: 20%;
     width: 100%;
     height: 100%;
-    position: relative;
-    /*transition: transform 1s; */
-    /*transform-style: preserve-3d; /*para dar el efecto de stack (pegar) el front y back de la tarjeta*/
-    transform-style: preserve-3d;  
-    -webkit-transform-style: preserve-3d; 
-    -moz-transform-style: preserve-3d;  /*Firefox*/
-    -ms-transform-style: preserve-3d;  /*Explorer*/
-    -o-transform-style: preserve-3d;  /*Opera*/
-    /*transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Es la curva definida por 4 puntos. Estos valores representan el inicio y fin en tiempo de la curva, es decir, del giro o vuelta*/
-    transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Es la curva definida por 4 puntos. Estos valores representan el inicio y fin en tiempo de la curva, es decir, del giro o vuelta*/
-  -webkit-transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  -moz-transform-style: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Firefox*/
-  -ms-transform-style: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Explorer*/
-  -o-transform-style: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Opera*/
-    
-    
+    position: relative; 
     border-radius: 12px;
   }
 
@@ -395,20 +378,6 @@ backface-visibility: visible; /* Este después se debe poner hidden para ocultar
     position: absolute; 
     height: 100%; 
     width: 100%;
-    /*backface-visibility: visible; */
-    /*-webkit-backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
-    /*transform: rotateY(180deg); */
-    backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden; /*Firefox*/
-    -ms-backface-visibility: hidden; /*Explorer*/
-    -moz-backface-visibility: hidden; 
-    
-    transform : rotateY(180deg);  
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg); /*Firefox*/
-    -ms-transform: rotateY(180deg); /*Explorer*/
-    -o-transform: rotateY(180deg); /*Opera*/
     }
     
     .back {
@@ -416,6 +385,7 @@ backface-visibility: visible; /* Este después se debe poner hidden para ocultar
     backface-visibility: visible;
     height: 100%; 
     width: 100%; 
+    display: none;
     }
 
 
@@ -491,7 +461,6 @@ backface-visibility: visible; /* Este después se debe poner hidden para ocultar
     border-radius: 5px;
     background: #fff;
     box-sizing: content-box;
-    /*opacity: 80%;  prueba cuando tengamos fondo*/ 
   }
 }
 

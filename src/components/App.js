@@ -49,7 +49,7 @@ const sound = (path) => {
 //FUNCIÓN SHUFFLING CARTAS
 const shuffle = (pokemon) => {
   let duplicate = pokemon.concat(pokemon);
-  duplicate.sort(() => Math.random() - 0.5);
+  duplicate.sort(() => Math.random() -0.5);
   return duplicate; //retornará array de cartas aleatoriamente
 };
 
