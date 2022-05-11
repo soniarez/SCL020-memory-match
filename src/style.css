@@ -299,11 +299,11 @@ backface-visibility: visible; /* Este después se debe poner hidden para ocultar
 }
 
 .back {
-  transition: 0.9s all;
-  -webkit-transition: 0.9s all;;
-  -moz-transition: 0.9s all;; /*Firefox*/
-  -ms-transition: 0.9s all;; /*Explorer*/
-  -o-transition: 0.9s all;; /*Opera*/
+  transition: 1.0s all;
+  -webkit-transition: 1.0s all;;
+  -moz-transition: 1.0s all;; /*Firefox*/
+  -ms-transition: 1.0s all;; /*Explorer*/
+  -o-transition: 1.0s all;; /*Opera*/
 }
 
 .card.is-flipped {
@@ -359,7 +359,7 @@ backface-visibility: visible; /* Este después se debe poner hidden para ocultar
 @media (min-device-width: 300px) and (max-device-width: 850px) {
   .card-deck {
     grid-template-columns: repeat(3, auto);
-    grid-gap: 2rem;
+    grid-gap: 1.5rem;
     margin: 0% auto; 
     display: grid;
     justify-content: center;
@@ -369,8 +369,8 @@ backface-visibility: visible; /* Este después se debe poner hidden para ocultar
 
   .card {
     margin-top: 20%;
-    width: 105%;
-    height: 105%;
+    width: 100%;
+    height: 100%;
     position: relative;
     /*transition: transform 1s; */
     /*transform-style: preserve-3d; /*para dar el efecto de stack (pegar) el front y back de la tarjeta*/
@@ -393,8 +393,8 @@ backface-visibility: visible; /* Este después se debe poner hidden para ocultar
   .front {
     background-color: aliceblue; 
     position: absolute; 
-    height: 105%; 
-    width: 105%;
+    height: 100%; 
+    width: 100%;
     /*backface-visibility: visible; */
     /*-webkit-backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
     /*transform: rotateY(180deg); */
