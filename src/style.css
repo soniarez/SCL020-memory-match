@@ -245,9 +245,14 @@ ul li:last-child {
   width: 100%;
   height: 100%;
   position: relative;
-  /*transition: transform 1s; */
-  transform-style: preserve-3d; /*para dar el efecto de stack (pegar) el front y back de la tarjeta*/
+  /*transform-style: preserve-3d; /*para dar el efecto de stack (pegar) el front y back de la tarjeta*/
+  transform-style: preserve-3d;  
+    -webkit-transform-style: preserve-3d; 
+    -moz-transform-style: preserve-3d;  /*Firefox*/
+    -ms-transform-style: preserve-3d;  /*Explorer*/
+    -o-transform-style: preserve-3d;  /*Opera*/
   transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Es la curva definida por 4 puntos. Estos valores representan el inicio y fin en tiempo de la curva, es decir, del giro o vuelta*/
+  /*transition: all 1.7s ease ; */
   border-radius: 12px;
 }
 
@@ -259,7 +264,17 @@ height: 100%;
 width: 100%;
 /*backface-visibility: visible; */
 backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
-transform: rotateY(180deg);
+-webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden; /*Firefox*/
+    -ms-backface-visibility: hidden; /*Explorer*/
+    -moz-backface-visibility: hidden; /*Opera*/
+
+/*transform: rotateY(180deg); */
+transform : rotateY(180deg);  
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg); /*Firefox*/
+    -ms-transform: rotateY(180deg); /*Explorer*/
+    -o-transform: rotateY(180deg); /*Opera*/
 }
 
 .back {
@@ -327,6 +342,11 @@ backface-visibility: visible;
     position: relative;
     /*transition: transform 1s; */
     transform-style: preserve-3d; /*para dar el efecto de stack (pegar) el front y back de la tarjeta*/
+    transform-style: preserve-3d;  
+    -webkit-transform-style: preserve-3d; 
+    -moz-transform-style: preserve-3d;  /*Firefox*/
+    -ms-transform-style: preserve-3d;  /*Explorer*/
+    -o-transform-style: preserve-3d;  /*Opera*/
     transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Es la curva definida por 4 puntos. Estos valores representan el inicio y fin en tiempo de la curva, es decir, del giro o vuelta*/
     border-radius: 12px;
   }
@@ -337,8 +357,18 @@ backface-visibility: visible;
     height: 105%; 
     width: 105%;
     /*backface-visibility: visible; */
+    /*-webkit-backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
+    /*transform: rotateY(180deg); */
     backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
-    transform: rotateY(180deg);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden; /*Firefox*/
+    -ms-backface-visibility: hidden; /*Explorer*/
+    -moz-backface-visibility: hidden; 
+    transform : rotateY(180deg);  
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg); /*Firefox*/
+    -ms-transform: rotateY(180deg); /*Explorer*/
+    -o-transform: rotateY(180deg); /*Opera*/
     }
     
     .back {
