@@ -251,8 +251,14 @@ ul li:last-child {
     -moz-transform-style: preserve-3d;  /*Firefox*/
     -ms-transform-style: preserve-3d;  /*Explorer*/
     -o-transform-style: preserve-3d;  /*Opera*/
+
+    /*transition: all 1.7s ease ; */
   transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Es la curva definida por 4 puntos. Estos valores representan el inicio y fin en tiempo de la curva, es decir, del giro o vuelta*/
-  /*transition: all 1.7s ease ; */
+  -webkit-transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transform-style: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Firefox*/
+  -ms-transform-style: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Explorer*/
+  -o-transform-style: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Opera*/
+
   border-radius: 12px;
 }
 
@@ -341,13 +347,20 @@ backface-visibility: visible;
     height: 105%;
     position: relative;
     /*transition: transform 1s; */
-    transform-style: preserve-3d; /*para dar el efecto de stack (pegar) el front y back de la tarjeta*/
+    /*transform-style: preserve-3d; /*para dar el efecto de stack (pegar) el front y back de la tarjeta*/
     transform-style: preserve-3d;  
     -webkit-transform-style: preserve-3d; 
     -moz-transform-style: preserve-3d;  /*Firefox*/
     -ms-transform-style: preserve-3d;  /*Explorer*/
     -o-transform-style: preserve-3d;  /*Opera*/
+    /*transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Es la curva definida por 4 puntos. Estos valores representan el inicio y fin en tiempo de la curva, es decir, del giro o vuelta*/
     transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Es la curva definida por 4 puntos. Estos valores representan el inicio y fin en tiempo de la curva, es decir, del giro o vuelta*/
+  -webkit-transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transform-style: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Firefox*/
+  -ms-transform-style: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Explorer*/
+  -o-transform-style: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Opera*/
+    
+    
     border-radius: 12px;
   }
 
@@ -364,6 +377,7 @@ backface-visibility: visible;
     -moz-backface-visibility: hidden; /*Firefox*/
     -ms-backface-visibility: hidden; /*Explorer*/
     -moz-backface-visibility: hidden; 
+    
     transform : rotateY(180deg);  
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg); /*Firefox*/
