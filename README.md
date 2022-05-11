@@ -1,9 +1,8 @@
 # Pokemon Memory Game 
 
 ## Juégalo:
+https://scl-020-memory-match.vercel.app/
 https://soniarez.github.io/SCL020-memory-match/ 
-
-https://scl-020-memory-match-aoin58dn3-soniarez.vercel.app
 
 ### ¿De qué trata este programa?
 Pokemon Memory Game es un juego de memory match, que consiste en descubir pares de tarjetas, es decir, el usuario va seleccionando pares de tarjetas aleatoriamente, y gana puntos al hacer match (coincidir dos tarjetas iguales).
