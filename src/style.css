@@ -315,7 +315,8 @@ transition: 0.8s all;
 }
 
 .card.is-flipped .back{
-  opacity: 0;
+  /*opacity: 0;*/
+  z-index: -1;
 }
 
 /*-----------------------------------------------------MEDIA QUERIES----------------------------------------*/
@@ -443,7 +444,8 @@ transition: 0.8s all;
     }
     
     .card.is-flipped .back{
-      opacity: 0;
+      /*opacity: 0; */
+      z-index: -1;
     }
 
 
