@@ -285,7 +285,12 @@ transform : rotateY(180deg);
 
 .back {
 cursor: pointer;
-backface-visibility: visible; 
+/*backface-visibility: visible; */
+backface-visibility: visible; /* Este después se debe poner hidden para ocultarlas*/
+-webkit-backface-visibility: visible;
+    -moz-backface-visibility: visible; /*Firefox*/
+    -ms-backface-visibility: visible; /*Explorer*/
+    -moz-backface-visibility: visible; /*Opera*/
 } 
 
 .front, .back {
@@ -294,8 +299,21 @@ backface-visibility: visible;
 }
 
 .card.is-flipped {
-  transform: rotateY(180deg);
+  /*transform: rotateY(180deg); */
+  transform : rotateY(180deg);  
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg); /*Firefox*/
+    -ms-transform: rotateY(180deg); /*Explorer*/
+    -o-transform: rotateY(180deg); /*Opera*/
   pointer-events: none; /*previene el evento de cliqueo*/
+}
+
+.card.is-flipped .front{
+  z-index: 5;
+}
+
+.card.is-flipped .back{
+  z-index: -1;
 }
 
 /*MEDIA QUERIES PARA GAMEBOARD*/
