@@ -371,10 +371,23 @@ transition: 0.8s all;
   }
 
   .card {
-    margin-top: 20%;
     width: 100%;
     height: 100%;
-    position: relative; 
+    position: relative;
+    /*transform-style: preserve-3d; /*para dar el efecto de stack (pegar) el front y back de la tarjeta*/
+    transform-style: preserve-3d;  
+      -webkit-transform-style: preserve-3d; 
+      -moz-transform-style: preserve-3d;  /*Firefox*/
+      -ms-transform-style: preserve-3d;  /*Explorer*/
+      -o-transform-style: preserve-3d;  /*Opera*/
+  
+      /*transition: all 1.7s ease ; */
+    transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Es la curva definida por 4 puntos. Estos valores representan el inicio y fin en tiempo de la curva, es decir, del giro o vuelta*/
+    -webkit-transition: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    -moz-transform-style: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Firefox*/
+    -ms-transform-style: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Explorer*/
+    -o-transform-style: all 1.7s cubic-bezier(0.175, 0.885, 0.32, 1.275); /*Opera*/
+  
     border-radius: 12px;
   }
 
@@ -383,12 +396,54 @@ transition: 0.8s all;
     position: absolute; 
     height: 100%; 
     width: 100%;
+    backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
+    -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden; /*Firefox*/
+        -ms-backface-visibility: hidden; /*Explorer*/
+        -moz-backface-visibility: hidden; /*Opera*/
+    
+    transform : rotateY(180deg);  
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg); /*Firefox*/
+        -ms-transform: rotateY(180deg); /*Explorer*/
+        -o-transform: rotateY(180deg); /*Opera*/
     }
     
     .back {
     cursor: pointer;
-    height: 100%; 
-    width: 100%; 
+    backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
+    -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden; /*Firefox*/
+      -ms-backface-visibility: hidden; /*Explorer*/
+      -moz-backface-visibility: hidden; /*Opera*/
+    
+    transition: 0.8s all;
+      -webkit-transition: 0.8s all;;
+      -moz-transition: 0.8s all;; /*Firefox*/
+      -ms-transition: 0.8s all;; /*Explorer*/
+      -o-transition: 0.8s all;; /*Opera*/
+    } 
+    
+    .front, .back {
+      border-radius: 12px;
+      box-shadow: rgba(0,0,0,0.5) 0px 5px 20px  /*rgba: los primeros 3 valores dan el color (negro), el 4to valor es opacity. 0px y 5px corresponden a la orientación de la shadow en ejes x y y. 15px es el blur*/ 
+    }
+    
+    .card.is-flipped {
+      transform : rotateY(180deg);  
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg); /*Firefox*/
+        -ms-transform: rotateY(180deg); /*Explorer*/
+        -o-transform: rotateY(180deg); /*Opera*/
+      pointer-events: none; /*previene el evento de cliqueo*/
+    }
+    
+    .card.is-flipped .front{
+      z-index: 5;
+    }
+    
+    .card.is-flipped .back{
+      opacity: 0;
     }
 
 
