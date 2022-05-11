@@ -285,9 +285,9 @@ transform : rotateY(180deg);
 cursor: pointer;
 backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
 -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: visible; /*Firefox*/
-    -ms-backface-visibility: visible; /*Explorer*/
-    -moz-backface-visibility: visible; /*Opera*/
+    -moz-backface-visibility: hidden; /*Firefox*/
+    -ms-backface-visibility: hidden; /*Explorer*/
+    -moz-backface-visibility: hidden; /*Opera*/
 } 
 
 .front, .back {
@@ -382,10 +382,8 @@ backface-visibility: hidden; /* Este después se debe poner hidden para ocultarl
     
     .back {
     cursor: pointer;
-    backface-visibility: visible;
     height: 100%; 
     width: 100%; 
-    display: none;
     }
 
 
