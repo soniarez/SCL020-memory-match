@@ -285,22 +285,20 @@ transform : rotateY(180deg);
 cursor: pointer;
 backface-visibility: hidden; /* Este después se debe poner hidden para ocultarlas*/
 -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: visible; /*Firefox*/
-    -ms-backface-visibility: visible; /*Explorer*/
-    -moz-backface-visibility: visible; /*Opera*/
+  -moz-backface-visibility: hidden; /*Firefox*/
+  -ms-backface-visibility: hidden; /*Explorer*/
+  -moz-backface-visibility: hidden; /*Opera*/
+
+transition: 0.8s all;
+  -webkit-transition: 0.8s all;;
+  -moz-transition: 0.8s all;; /*Firefox*/
+  -ms-transition: 0.8s all;; /*Explorer*/
+  -o-transition: 0.8s all;; /*Opera*/
 } 
 
 .front, .back {
   border-radius: 12px;
   box-shadow: rgba(0,0,0,0.5) 0px 5px 20px  /*rgba: los primeros 3 valores dan el color (negro), el 4to valor es opacity. 0px y 5px corresponden a la orientación de la shadow en ejes x y y. 15px es el blur*/ 
-}
-
-.back {
-  transition: 0.8s all;
-  -webkit-transition: 0.8s all;;
-  -moz-transition: 0.8s all;; /*Firefox*/
-  -ms-transition: 0.8s all;; /*Explorer*/
-  -o-transition: 0.8s all;; /*Opera*/
 }
 
 .card.is-flipped {
@@ -317,7 +315,8 @@ backface-visibility: hidden; /* Este después se debe poner hidden para ocultarl
 }
 
 .card.is-flipped .back{
-  opacity: 0;
+  /*opacity: 0;*/
+  z-index: -1;
 }
 
 /*-----------------------------------------------------MEDIA QUERIES----------------------------------------*/
@@ -336,6 +335,13 @@ backface-visibility: hidden; /* Este después se debe poner hidden para ocultarl
   
   .card-deck {
     grid-template-columns: repeat(2, auto);
+  }
+
+  .card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 12px;
   }
 
   .game-header {
@@ -366,10 +372,9 @@ backface-visibility: hidden; /* Este después se debe poner hidden para ocultarl
   }
 
   .card {
-    margin-top: 20%;
     width: 100%;
     height: 100%;
-    position: relative; 
+    position: relative;  
     border-radius: 12px;
   }
 
@@ -378,16 +383,7 @@ backface-visibility: hidden; /* Este después se debe poner hidden para ocultarl
     position: absolute; 
     height: 100%; 
     width: 100%;
-    }
-    
-    .back {
-    cursor: pointer;
-    backface-visibility: visible;
-    height: 100%; 
-    width: 100%; 
-    display: none;
-    }
-
+  }
 
   .game-header {
     flex-direction: row;
