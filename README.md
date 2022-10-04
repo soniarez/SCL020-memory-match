@@ -67,3 +67,6 @@ Para validar nuestro diseño y conocer la experiencia del usuario en esta etapa,
 ![feedback-tester](src/img/maze-results.png)
 
 A partir del feedback recibido, realizamos mejoras y empezamos a desarrollar el juego en HTML, CSS y Javascript. 
+
+## Demo
+![memorymatch-gif](https://user-images.githubusercontent.com/101676781/193936105-da32bda9-4dd9-40cd-b758-263101d91af9.gif)
